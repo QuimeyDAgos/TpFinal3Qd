@@ -1,8 +1,12 @@
+package SectoresPack;
+
+import ProductosPack.Productos;
+import Interfaces.Gestorable;
 import java.util.TreeMap;
 
 
-public class SectorMerch extends Sectores implements Gestorable <Productos> {
-    private TreeMap<Double,Productos> arbol=new TreeMap<>();
+public class SectorMerch extends Sectores implements Gestorable<Productos> {
+    private TreeMap<Double, Productos> arbol=new TreeMap<>();
 
     public TreeMap<Double, Productos> getArbol() {
         return arbol;
@@ -19,7 +23,7 @@ public class SectorMerch extends Sectores implements Gestorable <Productos> {
 
     @Override
     public String toString() {
-        return "SectorMerch{" +
+        return "SectoresPack.SectorMerch{" +
                 "arbol=" + arbol +
                 '}';
     }

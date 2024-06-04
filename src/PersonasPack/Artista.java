@@ -1,6 +1,10 @@
+package PersonasPack;
+
+import AlbumPack.Album;
+
 import java.util.LinkedList;
 
-public abstract class Artista extends Persona{
+public abstract class Artista extends Persona {
     protected String nombreEscenico;
     protected LinkedList<Album> albums;
 
@@ -56,7 +60,7 @@ public abstract class Artista extends Persona{
 
     @Override
     public String toString() {
-        return "Artista{" +
+        return "PersonasPack.Artista{" +
                 "nombreEscenico='" + nombreEscenico + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +

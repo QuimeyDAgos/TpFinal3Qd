@@ -1,4 +1,10 @@
+package SectoresPack;
+
+import Interfaces.Gestorable;
+import ProductosPack.Productos;
+
 import java.util.LinkedHashSet;
+
 
 public class SectorComida extends  Sectores implements Gestorable<Productos> {
 
@@ -19,7 +25,7 @@ public class SectorComida extends  Sectores implements Gestorable<Productos> {
 
     @Override
     public String toString() {
-        return "SectorComida{" +
+        return "SectoresPack.SectorComida{" +
                 "menu=" + menu +
                 '}';
     }

@@ -1,3 +1,5 @@
+package Interfaces;
+
 public interface Vendible {
 
         public void Venta();

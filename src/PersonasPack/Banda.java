@@ -1,3 +1,7 @@
+package PersonasPack;
+
+import AlbumPack.Album;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 

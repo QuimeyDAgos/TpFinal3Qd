@@ -1,3 +1,5 @@
+package ConcertPack;
+
 public abstract class Entradas {
         private int stock;
         private double precio;
@@ -46,7 +48,7 @@ public abstract class Entradas {
 
         @Override
         public String toString() {
-            return "Entradas{" +
+            return "ConcertPack.Entradas{" +
                     "stock=" + stock +
                     ", precio=" + precio +
                     ", tipo=" + tipo +

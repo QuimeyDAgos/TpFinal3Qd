@@ -27,3 +27,12 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/src/Vendible.java
+/src/SectorComida.java
+/src/Album.java
+/src/Artista.java
+/src/Banda.java
+/src/Cancion.java
+/src/Cliente.java
+/src/Persona.java
+/src/Solista.java

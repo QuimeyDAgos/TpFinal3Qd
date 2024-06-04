@@ -1,3 +1,5 @@
+package PersonasPack;
+
 public class Persona {
     protected String nombre;
     protected String apellido;
@@ -35,7 +37,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" +
+        return "PersonasPack.Persona{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni=" + dni +

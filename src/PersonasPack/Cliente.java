@@ -1,3 +1,5 @@
+package PersonasPack;
+
 public class Cliente extends Persona {
 
     private String email;
@@ -27,7 +29,7 @@ public class Cliente extends Persona {
 
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "PersonasPack.Cliente{" +
                 "email='" + email + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", nombre='" + nombre + '\'' +

@@ -1,4 +1,6 @@
-public class Comida extends Productos{
+package ProductosPack;
+
+public class Comida extends Productos {
     private String tipo;
 
     public String getTipo() {
@@ -16,7 +18,7 @@ public class Comida extends Productos{
 
     @Override
     public String toString() {
-        return "Comida{" +
+        return "ProductosPack.Comida{" +
                 "tipo='" + tipo + '\'' +
                 '}';
     }

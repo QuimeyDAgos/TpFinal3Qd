@@ -1,4 +1,6 @@
-public class Merch extends Productos{
+package ProductosPack;
+
+public class Merch extends Productos {
     private String talle;
     private String color;
 

@@ -1,3 +1,5 @@
+package ProductosPack;
+
 import java.util.Objects;
 
 public class Productos {
@@ -38,7 +40,7 @@ public class Productos {
 
     @Override
     public String toString() {
-        return "Productos{" +
+        return "ProductosPack.Productos{" +
                 "nombre='" + nombre + '\'' +
                 ", precio=" + precio +
                 ", stock=" + stock +

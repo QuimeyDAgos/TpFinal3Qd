@@ -1,3 +1,5 @@
+package AlbumPack;
+
 public class Cancion {
     private String titulo;
     private int duracion; // Duración en segundos

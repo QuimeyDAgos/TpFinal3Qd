@@ -1,7 +1,10 @@
+package AlbumPack;
+
+import Interfaces.Gestorable;
 
 import java.util.LinkedList;
 
-public class Album {
+public class Album implements Gestorable<Cancion> {
     private String titulo;
     private int anio;
     private LinkedList<Cancion>ListaCanciones;
@@ -35,7 +38,7 @@ public class Album {
     public void setListaCanciones(LinkedList<Cancion> listaCanciones) {
         ListaCanciones = listaCanciones;
     }
-    // Métodos para gestionar canciones
+/*    // Métodos para gestionar canciones
     public void agregarCancion(Cancion cancion) {
         this.ListaCanciones.add(cancion);
     }
@@ -68,14 +71,63 @@ public class Album {
             }
         }
         return null; // No se encontró la canción con el título especificado
+    }*/
+@Override
+public void agregar(Cancion item) {
+    if(!ListaCanciones.contains(item)) {
+        ListaCanciones.add(item);
+    }
+    else{
+        System.out.println("La cancion ya esta cargada en la lista");
+    }
+}
+
+    @Override
+    public void eliminar(Cancion item) {
+        if(ListaCanciones.contains(item)) {
+            ListaCanciones.remove(item);
+        }
+        else{
+            System.out.println("La cancion no se encuentra en la lista");
+        }
+
     }
 
     @Override
+    public Cancion buscar(Cancion item) {
+        for(Cancion cancion : ListaCanciones) {
+            if (cancion.getTitulo().equalsIgnoreCase(item.getTitulo())) {
+                return cancion;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void mostrar() {
+        for (Cancion cancion : ListaCanciones) {
+            System.out.println(cancion);
+        }
+
+    }
+
+    @Override
+    public void modificar(Cancion item) {
+        for(int i=0;i<ListaCanciones.size();i++) {
+            if(ListaCanciones.get(i).getTitulo().equalsIgnoreCase(item.getTitulo())) {
+                ListaCanciones.set(i, item);
+            }
+        }
+    }
+
+
+    @Override
     public String toString() {
-        return "Album{" +
+        return "AlbumPack.Album{" +
                 "titulo='" + titulo + '\'' +
                 ", anio=" + anio +
                 ", ListaCanciones=" + ListaCanciones +
                 '}';
     }
+
 }

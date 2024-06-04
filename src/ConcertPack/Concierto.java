@@ -1,3 +1,5 @@
+package ConcertPack;
+
 import java.util.*;
 
 public class Concierto extends Entradas {
@@ -22,7 +24,6 @@ public class Concierto extends Entradas {
         this.entradas = new HashMap<>();
     }
 
-    // Métodos getter y setter
 
     public String getNombreEvento() {
         return nombreEvento;

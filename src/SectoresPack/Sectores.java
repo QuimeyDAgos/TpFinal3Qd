@@ -1,4 +1,4 @@
-
+package SectoresPack;
 
 public class Sectores  {
     private int capacidad;
@@ -19,7 +19,7 @@ public class Sectores  {
 
     @Override
     public String toString() {
-        return "Sectores{" +
+        return "SectoresPack.Sectores{" +
                 "capacidad=" + capacidad +
                 '}';
     }
