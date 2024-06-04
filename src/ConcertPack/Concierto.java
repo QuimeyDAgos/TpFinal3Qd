@@ -1,5 +1,6 @@
 package ConcertPack;
 
+
 import java.util.*;
 
 public class Concierto extends Entradas {
@@ -11,6 +12,7 @@ public class Concierto extends Entradas {
     private LinkedList<String> listaVentas;
     private Stack<String> actos;
     private HashMap<Integer, Entradas> entradas;
+    private HashMap<String, Double> duracionesActos;
 
     public Concierto(int stock, TipoEntrada tipo, String nombreEvento, Date fecha, double duracion, String lugar) {
         super(stock, tipo);
@@ -22,6 +24,7 @@ public class Concierto extends Entradas {
         this.listaVentas = new LinkedList<>();
         this.actos = new Stack<>();
         this.entradas = new HashMap<>();
+        this.duracionesActos = new HashMap<>();
     }
 
 
@@ -89,21 +92,58 @@ public class Concierto extends Entradas {
         this.entradas = entradas;
     }
 
-    // Método para calcular los ingresos del concierto
+    public void agregarSector(String sector) {
+        sectores.add(sector);
+    }
+
+    public void registrarVenta(String venta) {
+        listaVentas.add(venta);
+        Venta();
+    }
+    public void agregarActo(String acto) {
+        actos.push(acto);
+    }
+    public void agregarEntrada(int id, Entradas entrada) {
+        entradas.put(id, entrada);
+    }
+    public String obtenerActoActual() {
+        return actos.peek();
+    }
+    public String removerActo() {
+        return actos.pop();
+    }
+    public List<String> listarSectores() {
+        return new ArrayList<>(sectores);
+    }
+    public double obtenerDuracionActo(String acto) {
+        return duracionesActos.getOrDefault(acto, 0.0);
+    }
+
+    public void agregarDuracionActo(String acto, double duracion) {
+        duracionesActos.put(acto, duracion);
+    }
+
     public double calcularIngresos() {
-        // Aquí puedes implementar la lógica para calcular los ingresos
-        // Por ejemplo, sumando el precio de todas las entradas vendidas
         double ingresos = 0.0;
         for (String venta : listaVentas) {
             ingresos += getPrecio();
         }
         return ingresos;
     }
+    public double calcularDuracionTotal() {
+        double duracionTotal = duracion;
+        // Suponiendo que cada acto tiene una duración, podrías almacenarla en una estructura adecuada
+        for (String acto : actos) {
+            // Aquí podrías sumar la duración de cada acto si tienes esa información
+            duracionTotal += obtenerDuracionActo(acto); // Método ficticio para obtener la duración de un acto
+        }
+        return duracionTotal;
+    }
 
-    // Método para calcular la duración total del concierto
-    // Falta agregar la duracion de canciones y o albumes
-    public double calcularDuracion() {
-        return duracion;
+    ///Falta codear aumento de entradas
+    @Override
+    public void Aumento() {
+
     }
 }
 

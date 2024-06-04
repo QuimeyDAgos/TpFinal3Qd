@@ -1,6 +1,9 @@
 package ConcertPack;
 
-public abstract class Entradas {
+import Excepciones.StockInsuficienteException;
+import Interfaces.Vendible;
+
+public abstract class Entradas implements Vendible {
         private int stock;
         private double precio;
         private TipoEntrada tipo;
@@ -30,7 +33,24 @@ public abstract class Entradas {
             this.stock = stock;
         }
 
-        public double getPrecio() {
+    @Override
+    public void Venta() {
+        try {
+            reducirStock();
+        } catch (StockInsuficienteException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void reducirStock() throws StockInsuficienteException {
+        if (stock > 0) {
+            stock--;
+        } else {
+            throw new StockInsuficienteException("No hay suficientes entradas disponibles.");
+        }
+    }
+
+
+    public double getPrecio() {
             return precio;
         }
 
