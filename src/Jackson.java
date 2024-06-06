@@ -3,7 +3,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 
 public class Jackson <T>{
@@ -46,7 +48,7 @@ public class Jackson <T>{
 
     }
 
-    public void guardarLinkedList (String nombreArchivo,LinkedList<T>lista){
+    public void guardarLinkedList (String nombreArchivo, LinkedList<T> lista){
 
 
         File archivo = new File(nombreArchivo);
@@ -82,7 +84,7 @@ public class Jackson <T>{
 
     }
 
-    public void guardarHashMap (String nombreArchivo,HashMap<T>map){
+    public void guardarHashMap (String nombreArchivo, HashMap<T> map){
         File archivo = new File(nombreArchivo);
         ObjectMapper mapper = new ObjectMapper();
 
@@ -176,7 +178,7 @@ public class Jackson <T>{
     public HashMap<T> leerHashMap(String nombreArchivo){
         File archivo = new File(nombreArchivo);
         ObjectMapper mapper = new ObjectMapper ();
-        HashMap <T> lista;
+        HashMap<T> lista;
 
         try{
 
