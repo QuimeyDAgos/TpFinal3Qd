@@ -3,7 +3,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 
 public class Jackson <T>{
@@ -35,7 +37,7 @@ public class Jackson <T>{
 
         try{
 
-            mapper.write (archivo,lista);
+            mapper.writeValue (archivo,lista);
 
         }catch (IOException e){
 
@@ -54,7 +56,7 @@ public class Jackson <T>{
 
         try{
 
-            mapper.write (archivo,lista);
+            mapper.writeValue (archivo,lista);
 
         }catch (IOException e){
 
@@ -71,7 +73,7 @@ public class Jackson <T>{
 
         try{
 
-            mapper.write (archivo,lista);
+            mapper.writeValue (archivo,lista);
 
         }catch (IOException e){
 
@@ -82,25 +84,9 @@ public class Jackson <T>{
 
     }
 
-    public void guardarHashMap (String nombreArchivo,HashMap<T>map){
-        File archivo = new File(nombreArchivo);
-        ObjectMapper mapper = new ObjectMapper();
-
-        try{
-
-            mapper.write (archivo,lista);
-
-        }catch (IOException e){
-
-            throw new RuntimeException(e);
-
-        }
-
-
-    }
 
     //LECTURA DE LISTA DE DATOS GENERICOS
-    public T leerDato (String nombreArchivo){
+   /*  public T leerDato (String nombreArchivo){
 
         File archivo = new File(nombreArchivo);
         ObjectMapper mapper = new ObjectMapper ();
@@ -108,7 +94,7 @@ public class Jackson <T>{
 
         try{
 
-            dato = mapper.readValue (archivo,T.class);
+            dato = mapper.readValue(archivo,Class<T>);
             return dato;
 
         }catch(IOException e){
@@ -117,8 +103,8 @@ public class Jackson <T>{
 
         }
 
-
     }
+    */
 
     public ArrayList<T> leerArray (String nombreArchivo){
         File archivo = new File(nombreArchivo);
@@ -173,21 +159,9 @@ public class Jackson <T>{
 
     }
    
-    public HashMap<T> leerHashMap(String nombreArchivo){
-        File archivo = new File(nombreArchivo);
-        ObjectMapper mapper = new ObjectMapper ();
-        HashMap <T> lista;
+ 
+}
 
-        try{
-
-            map = mapper.readValue (archivo,new TypeReference <HashMap<T>>(){});
-            return map;
-
-        }catch(IOException e){
-
-            throw new RuntimeException(e);
-
-        }
 
     }
 }
