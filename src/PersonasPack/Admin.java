@@ -1,31 +1,31 @@
 package PersonasPack;
-import java.io.*;
-import java.util.Scanner;
-import java.util.regex.Pattern;
+
+
 
 public class Admin extends Persona{
-    protected String nombreDeUsuario;
-    protected String contrasenia;
+    private  String  User;
+    private String Contrasenia;
 
- public Admin(String nombre, String apellido, int dni, String nombreDeUsuario, String contrasenia) {
+    public Admin(String nombre, String apellido, int dni, String user, String contrasenia) {
         super(nombre, apellido, dni);
-        this.nombreDeUsuario = nombreDeUsuario;
-        this.contrasenia = contrasenia;
+        User = user;
+        Contrasenia = contrasenia;
     }
 
-    public String getNombreDeUsuario() {
-        return nombreDeUsuario;
+    public String getUser() {
+        return User;
     }
 
-    public void setNombreDeUsuario(String nombreDeUsuario) {
-        this.nombreDeUsuario = nombreDeUsuario;
+    public void setUser(String user) {
+      User = user;
     }
 
     public String getContrasenia() {
-        return contrasenia;
+        return Contrasenia;
     }
 
     public void setContrasenia(String contrasenia) {
+<<<<<<< HEAD
         this.contrasenia = contrasenia;
     }
     public void RegistrarAdmin() {
@@ -109,9 +109,25 @@ public class Admin extends Persona{
         return false;
 
 
+=======
+        Contrasenia = contrasenia;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "User='" + User + '\'' +
+                ", Contrasenia='" + Contrasenia + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni=" + dni +
+                '}';
+>>>>>>> 33df1278d3d8cce1a70769efaa5472a24680e292
     }
 }
 
 
 
 
+
+}
