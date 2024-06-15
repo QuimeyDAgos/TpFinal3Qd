@@ -17,7 +17,7 @@ public class Admin extends Persona{
     }
 
     public void setUser(String user) {
-gi        User = user;
+      User = user;
     }
 
     public String getContrasenia() {
