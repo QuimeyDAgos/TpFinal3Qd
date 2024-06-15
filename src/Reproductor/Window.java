@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +14,7 @@ import java.util.List;
 public class Window extends JFrame {
     private Rep reproductor;
     private Map<JButton, String> cancionesMap = new HashMap<>();
-
-
+    private String rutaActual = "";
 
     public Window(String artista, Map<String, List<Cancion>> artistasCanciones) {
         setTitle("Natuki");
@@ -41,14 +42,25 @@ public class Window extends JFrame {
         iconNathy = new ImageIcon(nuevaimg);
 
         JButton botonCancion = new JButton(nombreCancion, iconNathy);
-        botonCancion.addActionListener(new ActionListener() {
+        botonCancion.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if (reproductor.isPlaying()) {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 1) {
+                    if (reproductor.isPlaying()) {
+                        reproductor.pausar();
+                    } else if (reproductor.isPaused()) {
+                        reproductor.reproducir();
+                    } else {
+                        reproductor.detener();
+                        reproductor.cargarSonido(rutaCancion);
+                        reproductor.reproducir();
+                    }
+                } else if (e.getClickCount() == 2) {
                     reproductor.detener();
+                    reproductor.cargarSonido(rutaCancion);
+                    reproductor.reproducir();
                 }
-                reproductor.cargarSonido(rutaCancion);
-                reproductor.reproducir();
+                rutaActual = rutaCancion;
             }
         });
         add(botonCancion);

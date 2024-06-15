@@ -7,7 +7,8 @@ import java.io.File;
 
 public class Rep {
     private Clip clip;
-    private String rutaActual;
+    private boolean isPaused;
+    private int pausaFrame;
 
     public void cargarSonido(String ruta) {
         try {
@@ -15,7 +16,7 @@ public class Rep {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(archivoSonido);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
-            rutaActual = ruta;
+            isPaused = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -23,14 +24,27 @@ public class Rep {
 
     public void reproducir() {
         if (clip != null) {
-            clip.setFramePosition(0);
+            if (isPaused) {
+                clip.setFramePosition(pausaFrame);
+                isPaused = false;
+            }
             clip.start();
         }
     }
 
-    public void detener() {
+    public void pausar() {
         if (clip != null && clip.isRunning()) {
+            pausaFrame = clip.getFramePosition();
             clip.stop();
+            isPaused = true;
+        }
+    }
+
+    public void detener() {
+        if (clip != null) {
+            clip.stop();
+            clip.close();
+            isPaused = false;
         }
     }
 
@@ -38,8 +52,8 @@ public class Rep {
         return clip != null && clip.isRunning();
     }
 
-    public String getRutaActual() {
-        return rutaActual;
+    public boolean isPaused() {
+        return isPaused;
     }
 }
 
