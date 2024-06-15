@@ -1,6 +1,8 @@
 package PersonasPack;
 
-
+import java.io.*;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Admin extends Persona{
     private  String  User;
@@ -25,9 +27,10 @@ public class Admin extends Persona{
     }
 
     public void setContrasenia(String contrasenia) {
-<<<<<<< HEAD
-        this.contrasenia = contrasenia;
+        this.Contrasenia = contrasenia;
     }
+
+
     public void RegistrarAdmin() {
         Scanner scanAdmin = new Scanner(System.in);
         System.out.println("Ingrese Nombre: ");
@@ -108,9 +111,6 @@ public class Admin extends Persona{
         }
         return false;
 
-
-=======
-        Contrasenia = contrasenia;
     }
 
     @Override
@@ -122,7 +122,6 @@ public class Admin extends Persona{
                 ", apellido='" + apellido + '\'' +
                 ", dni=" + dni +
                 '}';
->>>>>>> 33df1278d3d8cce1a70769efaa5472a24680e292
     }
 }
 
@@ -130,4 +129,4 @@ public class Admin extends Persona{
 
 
 
-}
+

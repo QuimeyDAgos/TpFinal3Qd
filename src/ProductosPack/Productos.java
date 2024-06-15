@@ -4,9 +4,10 @@ import java.util.Objects;
 
 public class Productos {
 
-    private String nombre;
+    protected String nombre;
     protected double precio;
-    private int stock;
+    protected int stock;
+    protected boolean disponibilad;
 
     public String getNombre() {
         return nombre;
@@ -32,10 +33,11 @@ public class Productos {
         this.stock = stock;
     }
 
-    public Productos(String nombre, double precio, int stock) {
+    public Productos(String nombre, double precio, int stock, boolean disponibilidad) {
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.disponibilad=disponibilidad;
     }
 
     @Override

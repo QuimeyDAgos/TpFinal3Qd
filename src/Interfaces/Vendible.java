@@ -2,9 +2,9 @@ package Interfaces;
 
 public interface Vendible {
 
-        public void Venta();
+        public void venta();
 
-        public void Aumento();
+        public void aumento(double porcentaje);
 
 
 }
