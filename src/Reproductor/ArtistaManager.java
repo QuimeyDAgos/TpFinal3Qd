@@ -16,16 +16,39 @@ public class ArtistaManager {
 
     private void agregarCanciones() {
         artistasCanciones.put("Nathy Peluso", Arrays.asList(
-                new Cancion("Manhattan", "src/Reproductor/musica/11. MANHATTAN - NATHY PELUSO, Duki  GRASA-YTConverter.app.wav", "src/Reproductor/img/Captura de pantalla 2024-06-15 143936.png"),
-                new Cancion("Legendario", "src/Reproductor/musica/4. LEGENDARIO - NATHY PELUSO .wav", "src/Reproductor/img/Captura de pantalla 2024-06-15 143936.png"),
-                new Cancion("La Presa", "src/Reproductor/musica/13. LA PRESA - NATHY PELUSO  GRASA-YTConverter.app.wav", "src/Reproductor/img/Captura de pantalla 2024-06-15 143936.png")
+                new Cancion("Manhattan", "src/Reproductor/musica/nati/11. MANHATTAN - NATHY PELUSO, Duki .wav", "src/Reproductor/img/Nati.png"),
+                new Cancion("Legendario", "src/Reproductor/musica/nati/4. LEGENDARIO - NATHY PELUSO  GRASA-YTConverter.app.wav", "src/Reproductor/img/Nati.png"),
+                new Cancion("Real","src/Reproductor/musica/nati/3. REAL - NATHY PELUSO .wav","src/Reproductor/img/Nati.png"),
+                new Cancion("La Presa", "src/Reproductor/musica/nati/13. LA PRESA - NATHY PELUSO .wav", "src/Reproductor/img/Nati.png"),
+                new Cancion("Ideas Radicales","src/Reproductor/musica/nati/10. IDEAS RADICALES - NATHY PELUSO.wav","src/Reproductor/img/Nati.png")
         ));
         artistasCanciones.put("TINI", Arrays.asList(
-                new Cancion("Posta", "src/Reproductor/musica/TINI - posta (Official Video)-YTConverter.app.wav", "src/Reproductor/img/Captura de pantalla 2024-06-15 162651.png"),
-                new Cancion("Ni de Ti", "src/Reproductor/musica/TINI - ni de ti (Visualizer)-YTConverter.app.wav", "src/Reproductor/img/Captura de pantalla 2024-06-15 162651.png")
+                new Cancion("Posta", "src/Reproductor/musica/Tini/TINI - posta .wav", "src/Reproductor/img/Tini.png"),
+                new Cancion("Ni de Ti", "src/Reproductor/musica/Tini/TINI - ni de ti .wav", "src/Reproductor/img/Tini.png"),
+                new Cancion("Las Jordans","src/Reproductor/musica/Tini/TINI - Las Jordans .wav","src/Reproductor/img/Tini.png"),
+                new Cancion("Mienteme","src/Reproductor/musica/Tini/TINI, Maria Becerra - Miénteme .wav","src/Reproductor/img/Tini.png"),
+                new Cancion("Maldita Foto","src/Reproductor/musica/Tini/TINI, Manuel Turizo - Maldita Foto .wav","src/Reproductor/img/Tini.png")
         ));
-        artistasCanciones.put("BZRP", Arrays.asList(
-                new Cancion("Lismar", "src/Reproductor/musica/Lismar  BZRP Music Sessions 60-YTConverter.app.wav", "src/Reproductor/img/Lismar.png")
+        artistasCanciones.put("Vela Puerca", Arrays.asList(
+                new Cancion("El Profeta", "src/Reproductor/musica/VelaPuerca/La Vela Puerca - El Profeta.wav", "src/Reproductor/img/Vela Puerca.png"),
+                new Cancion("Por Dentro","src/Reproductor/musica/VelaPuerca/La Vela Puerca - Por Dentro.wav","src/Reproductor/img/Vela Puerca.png"),
+                new Cancion("Por la Ciudad","src/Reproductor/musica/VelaPuerca/La Vela Puerca - Por la Ciudad.wav","src/Reproductor/img/Vela Puerca.png"),
+                new Cancion("El viejo","src/Reproductor/musica/VelaPuerca/La Vela Puerca  El Viejo .wav","src/Reproductor/img/Vela Puerca.png"),
+                new Cancion("Va A Escampar","src/Reproductor/musica/VelaPuerca/La Vela Puerca  Va A Escampar .wav","src/Reproductor/img/Vela Puerca.png")
+        ));
+        artistasCanciones.put ("Dua Lipa",Arrays.asList(
+                new Cancion("Houdini","src/Reproductor/musica/Dua/Dua Lipa - Houdini .wav","src/Reproductor/img/Dua .png"),
+                new Cancion("Potion","src/Reproductor/musica/Dua/Dua Lipa - Potion .wav","src/Reproductor/img/Dua .png"),
+                new Cancion("Good in Bed","src/Reproductor/musica/Dua/Dua Lipa - Good In Bed .wav","src/Reproductor/img/Dua .png"),
+                new Cancion("Pretty please","src/Reproductor/musica/Dua/Dua Lipa - Pretty Please.wav","src/Reproductor/img/Dua .png"),
+                new Cancion("Hallucinate","src/Reproductor/musica/Dua/Dua Lipa - Hallucinate .wav","src/Reproductor/img/Dua .png")
+        ));
+        artistasCanciones.put("Duki",Arrays.asList(
+                new Cancion("Dont Lie","src/Reproductor/musica/Duki/DUKI, Quevedo - dont Lie.wav",""),
+                new Cancion("Celosa","src/Reproductor/musica/Duki/DUKI - Celosa .wav",""),
+                new Cancion("Chico Estrella","src/Reproductor/musica/Duki/DUKI - Chico Estrella .wav",""),
+                new Cancion("GiGi","src/Reproductor/musica/Duki/DUKI - GiGi .wav",""),
+                new Cancion("GIVENCHY","src/Reproductor/musica/Duki/DUKI - GIVENCHY .wav","")
         ));
     }
 
