@@ -81,7 +81,6 @@ public class SectorComida extends Sectores implements Gestorable<Comida> {
         return retorno;
     }
 
-
     @Override
     public void mostrar() {
         for (Productos producto : menu) {
