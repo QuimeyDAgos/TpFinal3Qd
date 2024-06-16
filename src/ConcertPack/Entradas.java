@@ -1,78 +1,77 @@
 package ConcertPack;
 
-import Excepciones.StockInsuficienteException;
+import Excepciones.EntradaNoDisponibleExcepcion;
 import Interfaces.Vendible;
 
 public abstract class Entradas implements Vendible {
-        private int stock;
-        private double precio;
-        private TipoEntrada tipo;
+    private boolean disponibilad;
+    private double precio;    
+    private TipoEntrada tipo;       
 
-        public Entradas(int stock, TipoEntrada tipo) {
-            this.stock = stock;
-            this.precio =calcularPrecio();
-            this.tipo = tipo;
-        }
+    public Entradas(int stock, TipoEntrada tipo) {    
+        this.precio =calcularPrecio();    
+        this.tipo = tipo;
+        this.disponibilad=true;
+    }
 
-        public double calcularPrecio()
+    public double calcularPrecio()
+    {
+        double prc = 10000;
+        if (this.getTipo() == tipo.VIP)
         {
-            double prc = 10000;
-            if (this.getTipo() == tipo.VIP)
-            {
-                prc+=5000;
-
-            }
-            return prc;
+            prc+=5000;
         }
+        return prc;
+    }
 
-        public int getStock() {
-            return stock;
-        }
+    public double getPrecio() {
+        return precio;
+    }
 
-        public void setStock(int stock) {
-            this.stock = stock;
-        }
+    public void setPrecio(double precio) {
+         this.precio = precio;
+    }
+
+    public TipoEntrada getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoEntrada tipo) {
+        this.tipo = tipo;
+    }
+        
+    public void setDisponibilad(boolean disponibilad) {
+        this.disponibilad = disponibilad;
+    }
 
     @Override
-    public void Venta() {
+    public void venta() {
         try {
-            reducirStock();
-        } catch (StockInsuficienteException e) {
+            if(disponibilad){
+                System.out.println("Venta de entrada realizada con exito");
+                this.disponibilad=false;
+            }
+            else{
+                throw new EntradaNoDisponibleExcepcion("La entrada no esta disponible");
+            }
+        } catch (EntradaNoDisponibleExcepcion e) {
             System.out.println(e.getMessage());
         }
     }
-    public void reducirStock() throws StockInsuficienteException {
-        if (stock > 0) {
-            stock--;
-        } else {
-            throw new StockInsuficienteException("No hay suficientes entradas disponibles.");
-        }
+
+    @Override
+    public void aumento(double porcentaje) {
+        setPrecio(precio+(precio*porcentaje));
     }
 
+    @Override
+    public String toString() {
+        return "ConcertPack.Entradas{" +
+                "disponibilidad=" + disponibilad +
+                ", precio=" + precio +
+                ", tipo=" + tipo +
+                '}';
+    }
 
-    public double getPrecio() {
-            return precio;
-        }
-
-        public void setPrecio(double precio) {
-            this.precio = precio;
-        }
-
-        public TipoEntrada getTipo() {
-            return tipo;
-        }
-
-        public void setTipo(TipoEntrada tipo) {
-            this.tipo = tipo;
-        }
-
-        @Override
-        public String toString() {
-            return "ConcertPack.Entradas{" +
-                    "stock=" + stock +
-                    ", precio=" + precio +
-                    ", tipo=" + tipo +
-                    '}';
-        }
 }
 
