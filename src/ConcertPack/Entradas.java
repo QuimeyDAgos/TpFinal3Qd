@@ -3,10 +3,11 @@ package ConcertPack;
 import Excepciones.EntradaNoDisponibleExcepcion;
 import Interfaces.Vendible;
 
-public abstract class Entradas implements Vendible {
+public class Entradas implements Vendible {
     private boolean disponibilad;
     private double precio;    
-    private TipoEntrada tipo;       
+    private TipoEntrada tipo;
+    private int id;     
 
     public Entradas(int stock, TipoEntrada tipo) {    
         this.precio =calcularPrecio();    
