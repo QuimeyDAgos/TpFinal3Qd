@@ -36,3 +36,7 @@ bin/
 /src/Cliente.java
 /src/Persona.java
 /src/Solista.java
+/src/Reproductor/ArtistaManager.java
+/src/Reproductor/Cancion.java
+/src/Reproductor/Rep.java
+/src/Reproductor/Window.java

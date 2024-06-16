@@ -35,14 +35,17 @@ public class Admin extends Persona{
         Scanner scanAdmin = new Scanner(System.in);
         System.out.println("Ingrese Nombre: ");
         String nombre = scanAdmin.nextLine();
+        scanAdmin.close();
 
         System.out.println("Ingrese Apellido: ");
         String apellido = scanAdmin.nextLine();
+        scanAdmin.close();
 
         System.out.println("Ingrese DNI: ");
         int dni = scanAdmin.nextInt();
         scanAdmin.nextLine(); // Consumir el salto de línea
-
+        scanAdmin.close();
+        
         String nombreUsuario;
         boolean nombreValido = false;
         do {
