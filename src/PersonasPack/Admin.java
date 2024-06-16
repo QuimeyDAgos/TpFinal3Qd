@@ -8,8 +8,8 @@ public class Admin extends Persona{
     private  String  User;
     private String Contrasenia;
 
-    public Admin(String nombre, String apellido, int dni, String user, String contrasenia) {
-        super(nombre, apellido, dni);
+    public Admin(String nombre, String apellido, int dni, int id, String user, String contrasenia) {
+        super(nombre, apellido, dni, id);
         User = user;
         Contrasenia = contrasenia;
     }
