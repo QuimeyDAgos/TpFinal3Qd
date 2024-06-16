@@ -2,10 +2,7 @@ package Reproductor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,14 +10,13 @@ import java.util.List;
 
 public class Window extends JFrame {
     private Rep reproductor;
-    private Map<JButton, String> cancionesMap = new HashMap<>();
+    private Map<String, JButton> cancionesBotones = new HashMap<>();
     private String rutaActual = "";
 
     public Window(String artista, Map<String, List<Cancion>> artistasCanciones) {
         setTitle("Natuki");
         setSize(400, 400);
         setLayout(new GridLayout(0, 1));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         reproductor = new Rep();
 
@@ -32,6 +28,16 @@ public class Window extends JFrame {
             agregarBotonCancion(cancion.getNombre(), cancion.getRuta(), cancion.getImagen());
         }
 
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Detener la reproducción de música antes de ocultar la ventana
+                reproductor.detener();
+                setVisible(false); // Ocultar la ventana en lugar de cerrarla
+            }
+        });
+
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setVisible(true);
     }
 
@@ -63,7 +69,22 @@ public class Window extends JFrame {
                 rutaActual = rutaCancion;
             }
         });
+        cancionesBotones.put(nombreCancion, botonCancion);
         add(botonCancion);
+    }
+
+    public void mostrarBoton(String nombreCancion) {
+        JButton boton = cancionesBotones.get(nombreCancion);
+        if (boton != null) {
+            boton.setVisible(true);
+        }
+    }
+
+    public void ocultarBoton(String nombreCancion) {
+        JButton boton = cancionesBotones.get(nombreCancion);
+        if (boton != null) {
+            boton.setVisible(false);
+        }
     }
 }
 
