@@ -34,7 +34,7 @@ public abstract class Entradas implements Vendible {
         }
 
     @Override
-    public void Venta() {
+    public void venta() {
         try {
             reducirStock();
         } catch (StockInsuficienteException e) {

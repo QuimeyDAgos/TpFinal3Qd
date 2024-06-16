@@ -98,7 +98,7 @@ public class Concierto extends Entradas {
 
     public void registrarVenta(String venta) {
         listaVentas.add(venta);
-        Venta();
+        venta();
     }
     public void agregarActo(String acto) {
         actos.push(acto);
@@ -141,9 +141,10 @@ public class Concierto extends Entradas {
     }
 
     ///Falta codear aumento de entradas
-    @Override
-    public void Aumento() {
 
+    @Override
+    public void aumento(double porcentaje) {
+        System.out.println("aumento");
     }
 }
 
