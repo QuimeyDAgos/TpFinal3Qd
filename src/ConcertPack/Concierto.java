@@ -3,7 +3,7 @@ package ConcertPack;
 
 import java.util.*;
 
-public class Concierto extends Entradas {
+public class Concierto {
     private String nombreEvento;
     private Date fecha;
     private double duracion;
@@ -14,8 +14,7 @@ public class Concierto extends Entradas {
     private HashMap<Integer, Entradas> entradas;
     private HashMap<String, Double> duracionesActos;
 
-    public Concierto(int stock, TipoEntrada tipo, String nombreEvento, Date fecha, double duracion, String lugar) {
-        super(stock, tipo);
+    public Concierto( String nombreEvento, Date fecha, double duracion, String lugar) {
         this.nombreEvento = nombreEvento;
         this.fecha = fecha;
         this.duracion = duracion;
@@ -26,7 +25,8 @@ public class Concierto extends Entradas {
         this.entradas = new HashMap<>();
         this.duracionesActos = new HashMap<>();
     }
-
+    
+    
 
     public String getNombreEvento() {
         return nombreEvento;
@@ -126,7 +126,7 @@ public class Concierto extends Entradas {
     public double calcularIngresos() {
         double ingresos = 0.0;
         for (String venta : listaVentas) {
-            ingresos += getPrecio();
+            ingresos += ;
         }
         return ingresos;
     }
@@ -141,11 +141,6 @@ public class Concierto extends Entradas {
     }
 
     ///Falta codear aumento de entradas
-
-    @Override
-    public void aumento(double porcentaje) {
-        System.out.println("aumento");
-    }
 }
 
 

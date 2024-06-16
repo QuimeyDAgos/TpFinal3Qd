@@ -27,7 +27,7 @@ public class Sistema<T> extends Jackson<T>{
     
     //Metodos
 
-    public void leerAdministradores(String nombreArchi){
+    public void leerPersonas(String nombreArchi){
 
         for (T persona :leerHashSet(nombreArchi)) {
             if (persona instanceof Admin){
