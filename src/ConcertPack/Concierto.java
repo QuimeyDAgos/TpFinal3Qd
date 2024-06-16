@@ -140,11 +140,13 @@ public class Concierto extends Entradas {
         return duracionTotal;
     }
 
-    ///Falta codear aumento de entradas
     @Override
-    public void aumento() {
+    public void aumento(double porcentaje) {
 
     }
+
+    ///Falta codear aumento de entradas
+
 }
 
 
