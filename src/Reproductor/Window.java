@@ -15,7 +15,7 @@ public class Window extends JFrame {
 
     public Window(String artista, Map<String, List<Cancion>> artistasCanciones) {
         setTitle("Natuki");
-        setSize(400, 400);
+        setSize(500, 900);
         setLayout(new GridLayout(0, 1));
 
         reproductor = new Rep();
