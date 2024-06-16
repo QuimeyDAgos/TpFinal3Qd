@@ -9,10 +9,11 @@ public class Entradas implements Vendible {
     private TipoEntrada tipo;
     private int id;     
 
-    public Entradas(int stock, TipoEntrada tipo) {    
+    public Entradas(int stock, TipoEntrada tipo,int id) {    
         this.precio =calcularPrecio();    
         this.tipo = tipo;
         this.disponibilad=true;
+        this.id = id;
     }
 
     public double calcularPrecio()
@@ -43,6 +44,14 @@ public class Entradas implements Vendible {
         
     public void setDisponibilad(boolean disponibilad) {
         this.disponibilad = disponibilad;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

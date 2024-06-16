@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-            Admin admin = new Admin("AdminInicial", "Apellido", 12345678, "admin1", "password123");
+            Admin admin = new Admin("AdminInicial", "Apellido", 12345678,"admin1", "password123");
             Scanner scanner = new Scanner(System.in);
             boolean salir = false;
 
@@ -24,6 +24,8 @@ public class Main {
                         break;
                     case 2:
                         iniciarSesion(admin, scanner);
+
+                        
                         break;
                     case 3:
                         salir = true;

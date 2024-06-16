@@ -14,8 +14,8 @@ public class Concierto extends Entradas {
     private HashMap<Integer, Entradas> entradas;
     private HashMap<String, Double> duracionesActos;
 
-    public Concierto(int stock, TipoEntrada tipo, String nombreEvento, Date fecha, double duracion, String lugar) {
-        super(stock, tipo);
+    public Concierto(int stock, TipoEntrada tipo, String nombreEvento, Date fecha, double duracion, String lugar,int id) {
+        super(stock, tipo,id);
         this.nombreEvento = nombreEvento;
         this.fecha = fecha;
         this.duracion = duracion;
