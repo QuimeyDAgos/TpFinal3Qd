@@ -5,22 +5,24 @@ import java.util.*;
 
 public class Concierto extends Entradas {
     private String nombreEvento;
-    private String fecha;
+    private Date fecha;
     private double duracion;
     private String lugar;
-    private LinkedList<String> sectores; ///Lau
+    private LinkedList<String> sectores;
     private LinkedList<String> listaVentas;
+    private Stack<String> actos;
     private HashMap<Integer, Entradas> entradas;
     private HashMap<String, Double> duracionesActos;
 
-    public Concierto(int stock, TipoEntrada tipo, String nombreEvento, String fecha, double duracion, String lugar) {
-        super(stock, tipo);
+    public Concierto(int stock, TipoEntrada tipo, String nombreEvento, Date fecha, double duracion, String lugar,int id) {
+        super(stock, tipo,id);
         this.nombreEvento = nombreEvento;
         this.fecha = fecha;
         this.duracion = duracion;
         this.lugar = lugar;
         this.sectores = new LinkedList<>();
         this.listaVentas = new LinkedList<>();
+        this.actos = new Stack<>();
         this.entradas = new HashMap<>();
         this.duracionesActos = new HashMap<>();
     }
@@ -34,11 +36,11 @@ public class Concierto extends Entradas {
         this.nombreEvento = nombreEvento;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -74,6 +76,14 @@ public class Concierto extends Entradas {
         this.listaVentas = listaVentas;
     }
 
+    public Stack<String> getActos() {
+        return actos;
+    }
+
+    public void setActos(Stack<String> actos) {
+        this.actos = actos;
+    }
+
     public HashMap<Integer, Entradas> getEntradas() {
         return entradas;
     }
@@ -90,11 +100,18 @@ public class Concierto extends Entradas {
         listaVentas.add(venta);
         venta();
     }
-
+    public void agregarActo(String acto) {
+        actos.push(acto);
+    }
     public void agregarEntrada(int id, Entradas entrada) {
         entradas.put(id, entrada);
     }
-
+    public String obtenerActoActual() {
+        return actos.peek();
+    }
+    public String removerActo() {
+        return actos.pop();
+    }
     public List<String> listarSectores() {
         return new ArrayList<>(sectores);
     }
@@ -113,7 +130,15 @@ public class Concierto extends Entradas {
         }
         return ingresos;
     }
-
+    public double calcularDuracionTotal() {
+        double duracionTotal = duracion;
+        // Suponiendo que cada acto tiene una duración, podrías almacenarla en una estructura adecuada
+        for (String acto : actos) {
+            // Aquí podrías sumar la duración de cada acto si tienes esa información
+            duracionTotal += obtenerDuracionActo(acto); // Método ficticio para obtener la duración de un acto
+        }
+        return duracionTotal;
+    }
 
     ///Falta codear aumento de entradas
 

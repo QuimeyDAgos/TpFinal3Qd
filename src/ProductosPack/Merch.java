@@ -5,6 +5,7 @@ import Excepciones.*;
 public class Merch extends Productos implements Vendible {
     private String talle;
     private String color;
+    private int codigo;
 
     public String getTalle() {
         return talle;
@@ -22,10 +23,19 @@ public class Merch extends Productos implements Vendible {
         this.color = color;
     }
 
-    public Merch(String nombre, double precio, int stock, String talle, String color, boolean disponibilidad) {
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public Merch(String nombre, double precio, int stock, String talle, String color, boolean disponibilidad, int codigo) {
         super(nombre, precio, stock, disponibilidad);
         this.talle = talle;
         this.color = color;
+        this.codigo= codigo;
     }
 
    @Override 
