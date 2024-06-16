@@ -48,7 +48,9 @@ public class Merch extends Productos implements Vendible {
         {
             System.out.println(e.getMessage());
         }
-    }
+    } 
+
+    
 
     @Override
     public void aumento(double porcentaje)
@@ -56,7 +58,7 @@ public class Merch extends Productos implements Vendible {
         setPrecio(precio+(precio*porcentaje));
     }
 
-    
+
     @Override
     public String toString() {
         return "Mercj{" +
