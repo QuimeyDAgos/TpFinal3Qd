@@ -1,34 +1,27 @@
 package GestoresPack;
 
+
 import PersonasPack.Jackson;
-import ProductosPack.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import SectoresPack.SectorComida;
-import SectoresPack.SectorMerch;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import ProductosPack.Comida;
+import ProductosPack.Merch;
+import ProductosPack.Productos;
 
 
-public class GestorProductos<T extends SectoresPack.GestorProductos> {
+import java.util.*;
 
-    private List<T> sectoresComida;
-    private List<T> sectoresMerch;
-    private List<Productos> productos;
+public abstract class GestorProductos <T extends Productos> {
 
-    public GestorProductos(List<T> sectoresComida, List<T> sectoresMerch, ArrayList<Productos> productos) {
-        this.sectoresComida = sectoresComida;
-        this.sectoresMerch = sectoresMerch;
-        this.productos = productos;
+    HashSet<T> ListadoProductos;
+
+    public GestorProductos(HashSet<T> listadoProductos) {
+        ListadoProductos = listadoProductos;
     }
+
 
     public void agregarProducto(Scanner scanner) {
         try {
+            System.out.println("Ingrese el tipo de Producto (Comida/Merch):");
+            String tipoProducto = scanner.nextLine().trim();
             System.out.println("Ingrese el Nombre del Producto:");
             String nombreNuevo = scanner.nextLine();
             System.out.println("Ingrese el Precio del Producto:");
@@ -37,74 +30,93 @@ public class GestorProductos<T extends SectoresPack.GestorProductos> {
             int stock = scanner.nextInt();
             System.out.println("Ingrese el ID del Producto:");
             int id = scanner.nextInt();
-            for (Productos aux : productos) {
+            scanner.nextLine(); // Consumir la nueva línea
+
+            for (T aux : ListadoProductos) {
                 if (aux.getId() == id) {
                     throw new Exception("Ya existe un Producto con ese ID.");
                 }
             }
-            Productos nuevo = new Productos(nombreNuevo, precio, stock, true, id);
-            productos.add(nuevo);
-            System.out.println("Entrada agregada con éxito.");
+
+            Productos nuevo = null;
+
+            if (tipoProducto.equalsIgnoreCase("Comida")) {
+                System.out.println("Ingrese Variedad de Comida:");
+                String variedad = scanner.nextLine();
+                nuevo = new Comida(nombreNuevo, precio, stock, true, id, variedad,tipoProducto);
+            } else if (tipoProducto.equalsIgnoreCase("Merch")) {
+                System.out.println("Ingrese el Talle del Merch:");
+                String talle = scanner.nextLine();
+                System.out.println("Ingrese el Color del Merch:");
+                String color = scanner.nextLine();
+                nuevo = new Merch(nombreNuevo, precio, stock, true, id, talle, color, tipoProducto);
+            } else {
+                throw new Exception("Tipo de producto no reconocido. Debe ser 'Comida' o 'Merch'.");
+            }
+
+            ListadoProductos.add((T) nuevo);
+            System.out.println("Producto agregado con éxito.");
+
+            // Guardar la lista de productos actualizada en el archivo JSON
+            guardarProductos();
         } catch (Exception e) {
             System.out.println("Error al agregar la entrada: " + e.getMessage());
         }
     }
-
-
+    public T buscarProducto(int id){
+        T retorno = null;
+        for (T aux : ListadoProductos) {
+            if (id==aux.getId()) {
+                retorno = aux;
+            }
+        }
+        try {
+            if (retorno == null) {
+                throw new RuntimeException("Producto no Encontrado");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+        return retorno;
+    }
 
     public void mostrarSectores() {
-        System.out.println("Sectores de comida disponibles");
-        for (T s : sectoresComida) {
+        System.out.println("Comida disponibles");
+        for (T s : ListadoProductos) {
+            if(s instanceof Comida){
             System.out.println(s);
-        }
+        }}
 
-        System.out.println("Sectores de Merchandising disponibles");
-        for (T s : sectoresMerch) {
+        System.out.println(" Merchandising disponibles");
+        for (T s : ListadoProductos) {
+            if(s instanceof Merch){
             System.out.println(s);
-        }
+        }}
     }
 
-    public double calcularVentasSectores() {
-        double ingreso = 0;
-        for (T s : sectoresMerch) {
-            for (Merch m : ((SectorMerch) s).getArbol().values()) {
-                ingreso = ingreso + m.getPrecio();
-            }
 
-        }
-
-        for (T c : sectoresComida) {
-            for (Comida a : ((SectorComida) c).getMenu()) {
-                ingreso = ingreso + a.getPrecio();
-            }
-        }
-
-        return ingreso;
-    }
-    public void modificarProducto(Scanner scanner) {
+    public void modificarProducto(int id) {
+        Scanner scanner=new Scanner(System.in);
         try {
-            System.out.println("Ingrese el ID del Producto a modificar:");
-            int id = scanner.nextInt();
-            boolean encontrado = false;
-            for (Productos aux : productos) {
-                if (aux.getId() == id) {
-                    encontrado = true;
-                    System.out.println("Ingrese el nuevo Nombre del Producto:");
-                    String nombreNuevo = scanner.nextLine();
-                    System.out.println("Ingrese el nuevo Precio del Producto:");
-                    double precio = scanner.nextDouble();
-                    System.out.println("Ingrese el nuevo Stock del Producto:");
-                    int stock = scanner.nextInt();
-                    aux.setNombre(nombreNuevo);
-                    aux.setPrecio(precio);
-                    aux.setStock(stock);
-                    System.out.println("Producto modificado con éxito.");
+            T producto = buscarProducto(id);
+            if (producto != null) {
+                System.out.println("Ingrese el nuevo Nombre del Producto:");
+                String nombreNuevo = scanner.nextLine();
+                System.out.println("Ingrese el nuevo Precio del Producto:");
+                double precio = scanner.nextDouble();
+                System.out.println("Ingrese el nuevo Stock del Producto:");
+                int stock = scanner.nextInt();
 
-                    // Guardar la lista de productos actualizada en el archivo JSON
-                    guardarProductos();
-                }
-            }
-            if (!encontrado) {
+                producto.setNombre(nombreNuevo);
+                producto.setPrecio(precio);
+                producto.setStock(stock);
+
+                scanner.close();
+                System.out.println("Producto modificado con éxito.");
+
+                // Guardar la lista de productos actualizada en el archivo JSON
+                guardarProductos();
+            } else {
                 System.out.println("No existe un Producto con ese ID.");
             }
         } catch (Exception e) {
@@ -112,58 +124,35 @@ public class GestorProductos<T extends SectoresPack.GestorProductos> {
         }
     }
 
-    public void eliminarProducto(Scanner scanner) {
-        try {
-            System.out.println("Ingrese el ID del Producto a eliminar:");
-            int id = scanner.nextInt();
-            boolean encontrado = false;
-            for (Productos aux : productos) {
-                if (aux.getId() == id) {
-                    encontrado = true;
-                    productos.remove(aux);
-                    System.out.println("Producto eliminado con éxito.");
-
-                    // Guardar la lista de productos actualizada en el archivo JSON
-                    guardarProductos();
-                    break;
-                }
-            }
-            if (!encontrado) {
-                System.out.println("No existe un Producto con ese ID.");
-            }
-        } catch (Exception e) {
-            System.out.println("Error al eliminar el producto: " + e.getMessage());
+    public void eliminarProducto(int id) {
+        T eliminado = buscarProducto(id);
+        if (eliminado != null) {
+            ListadoProductos.remove(eliminado);
         }
+        guardarProductos();
     }
 
     public void mostrarProductos() {
-        for (Productos p : productos) {
+        for (T p : ListadoProductos) {
             System.out.println(p);
         }
     }
 
-    public void cargarProductos() {
-        try {
-            productos = leerArrayList("productos.json");
-            System.out.println("Productos cargados con éxito.");
-        } catch (Exception e) {
-            System.out.println("Error al cargar los productos: " + e.getMessage());
-        }
-    }
+
+
+
     public void guardarProductos() {
-        Jackson<Productos> jackson = new Jackson<>();
-        jackson.guardarLista("productos.json", productos);
-    }
-    public List<Productos> leerArrayList(String nombreArchivo) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        File archivo = new File(nombreArchivo);
-        if (!archivo.exists()) {
-            archivo.createNewFile();
-            return new ArrayList<>();
-        }
-        TypeReference<ArrayList<Productos>> typeRef = new TypeReference<>() {};
-        ArrayList<Productos> lista = objectMapper.readValue(archivo, typeRef);
-        return lista;
+        Jackson<T> jackson = new Jackson<>();
+        jackson.guardarHashSet("productos.json", ListadoProductos);
     }
 
+
+
+
+    @Override
+    public String toString() {
+        return "GestorProductos{" +
+                "ListadoProductos=" + ListadoProductos +
+                '}';
+    }
 }

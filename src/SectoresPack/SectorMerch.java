@@ -1,6 +1,7 @@
 package SectoresPack;
 
 import Excepciones.ProductoNoDisponibleExepcion;
+import GestoresPack.GestorProductos;
 import ProductosPack.Merch;
 import ProductosPack.Productos;
 import Interfaces.Gestorable;

@@ -1,5 +1,6 @@
 package SectoresPack;
 
+import GestoresPack.GestorProductos;
 import Interfaces.Gestorable;
 import ProductosPack.Comida;
 import ProductosPack.Productos;
