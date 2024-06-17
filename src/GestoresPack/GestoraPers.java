@@ -1,8 +1,11 @@
-package PersonasPack;
+package GestoresPack;
 
 import AlbumPack.Album;
 import AlbumPack.Cancion;
-import GestoresPack.Sistema;
+import PersonasPack.Artista;
+import PersonasPack.Cliente;
+import PersonasPack.Jackson;
+import PersonasPack.Persona;
 
 import java.util.LinkedList;
 import java.util.Scanner;

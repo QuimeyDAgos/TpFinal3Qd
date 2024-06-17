@@ -1,10 +1,13 @@
-package SectoresPack;
+package GestoresPack;
 
 import ProductosPack.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import Excepciones.TipoDeSectorNoValidoExcepcion;
+import SectoresPack.SectorComida;
+import SectoresPack.SectorMerch;
+import SectoresPack.Sectores;
 
 public class GestorSectores<T extends Sectores> {
 
