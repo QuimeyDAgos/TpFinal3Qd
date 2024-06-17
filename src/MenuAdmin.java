@@ -40,9 +40,16 @@ public class MenuAdmin {
                     break;
 
             }
+<<<<<<< HEAD
             scanner.close();
+=======
+>>>>>>> a4bd6f8a8e250a2c981d4006eb8da1d05f96f224
 
 
     }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a4bd6f8a8e250a2c981d4006eb8da1d05f96f224

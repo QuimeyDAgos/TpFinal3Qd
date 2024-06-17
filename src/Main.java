@@ -1,4 +1,5 @@
 import PersonasPack.Admin;
+import Reproductor.ArtistaManager;
 
 import java.util.Scanner;
 
@@ -24,10 +25,14 @@ public class Main {
                         break;
                     case 2:
                         iniciarSesion(admin, scanner);
+<<<<<<< HEAD
 
 
 
                         
+=======
+                        //// aca llamamos MenuAdmin
+>>>>>>> a4bd6f8a8e250a2c981d4006eb8da1d05f96f224
                         break;
                     case 3:
                         salir = true;
@@ -59,4 +64,5 @@ public class Main {
                 System.out.println("Credenciales incorrectas. Intente nuevamente.");
             }
         }
+
     }

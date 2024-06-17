@@ -13,7 +13,7 @@ public class Window extends JFrame {
     private Map<String, JButton> cancionesBotones = new HashMap<>();
     private String rutaActual = "";
 
-    public Window(String artista, Map<String, List<Cancion>> artistasCanciones) {
+    public Window(String artista, Map<String, List<Song>> artistasCanciones) {
         setTitle("Natuki");
         setSize(500, 900);
         setLayout(new GridLayout(0, 1));
@@ -21,10 +21,10 @@ public class Window extends JFrame {
         reproductor = new Rep();
 
         // Obtener las canciones del artista
-        List<Cancion> canciones = artistasCanciones.getOrDefault(artista, Collections.emptyList());
+        List<Song> canciones = artistasCanciones.getOrDefault(artista, Collections.emptyList());
 
         // Crear botones para cada canción
-        for (Cancion cancion : canciones) {
+        for (Song cancion : canciones) {
             agregarBotonCancion(cancion.getNombre(), cancion.getRuta(), cancion.getImagen());
         }
 
