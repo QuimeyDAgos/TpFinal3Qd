@@ -1,6 +1,4 @@
 import PersonasPack.Admin;
-import Reproductor.ArtistaManager;
-
 import java.util.Scanner;
 
 public class Main {

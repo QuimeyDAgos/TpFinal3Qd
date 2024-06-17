@@ -32,7 +32,7 @@ public class GestoraPers {
                     // guardarUnoEnlista("personas.json",admin);
                     break;
                 case 2:
-                    Sistema sis =new Sistema<>();
+                    Sistema<Persona> sis =new Sistema<Persona>();
                     LinkedList<Cancion> lista_canciones2 = new LinkedList<>();
                     Album album2 = new Album("Future Nostalgia", 2021, lista_canciones2);
                     LinkedList<Album> lista_de_AlbumsDua = new LinkedList<>();

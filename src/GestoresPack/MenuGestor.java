@@ -22,7 +22,7 @@ public static void main(String[] args) {
                  HashSet<Artista> listaArtistas = new HashSet<>();
                  HashSet<Cliente> listaClientes = new HashSet<>();
                  Sistema<Persona> sistemaUno = new Sistema<Persona>(listaAdmin, listaArtistas, listaClientes);
-                 sistemaUno.gestionarPersonas(in);
+                 sistemaUno.gestionarPersonas("Personas.json",in);
 
                  break;
              case 2:

@@ -1,9 +1,5 @@
 package PersonasPack;
 
-import AlbumPack.Album;
-
-import java.util.LinkedList;
-
 public class Persona {
     protected String nombre;
     protected String apellido;

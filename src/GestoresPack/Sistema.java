@@ -83,8 +83,6 @@ public class Sistema<T> extends Jackson<T> {
 
     }
 
-
-
     public void menuEliminarPersona() {
         System.out.println("|-----------Eliminar----------|");
         System.out.println("|--------Tipo de Persona------|");
@@ -96,9 +94,9 @@ public class Sistema<T> extends Jackson<T> {
 
     }
 
-    public void gestionarPersonas(Scanner scanner) {
+    public void gestionarPersonas(String nombreArchi, Scanner scanner) {
         boolean salir = false;
-        Jackson<Persona> jack = new Jackson<>();
+        
 
         while (!salir) {
             System.out.println("a");
@@ -117,7 +115,7 @@ public class Sistema<T> extends Jackson<T> {
 
                     break;
                 case 3:
-                    gestionarEliminacionPersona(scanner);
+                    gestionarEliminacionPersona(nombreArchi,scanner);
                     break;
                 case 4 :
                     salir=true;
@@ -165,7 +163,7 @@ public class Sistema<T> extends Jackson<T> {
         this.general = general;
     }
 
-    private void gestionarEliminacionPersona(Scanner scanner) {
+    private void gestionarEliminacionPersona(String nombreArchi, Scanner scanner) {
         menuEliminarPersona();
         System.out.print(">>");
         int opcionTres = scanner.nextInt();
@@ -178,13 +176,13 @@ public class Sistema<T> extends Jackson<T> {
         switch (opcionTres) {
             case 1:
                 // Eliminar admin
-                eliminarAdmin("Personas.json", dniAeliminar);
+                eliminarAdmin(nombreArchi, dniAeliminar);
                 break;
             case 2:
-                eliminarArtista("Personas.json", dniAeliminar);
+                eliminarArtista(nombreArchi, dniAeliminar);
                 break;
             case 3:
-                eliminarCliente("Personas.json", dniAeliminar);
+                eliminarCliente(nombreArchi, dniAeliminar);
                 break;
             case 4:
                 System.out.println("Volviendo...");
@@ -194,4 +192,5 @@ public class Sistema<T> extends Jackson<T> {
                 break;
         }
     }
+
 }
