@@ -1,11 +1,17 @@
 package PersonasPack;
 
-import java.io.*;
-import java.util.Scanner;
-import java.util.regex.Pattern;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 
-public class Admin extends Persona{
-    private  String  User;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Admin extends Persona implements Serializable {
+    private String User;
     private String Contrasenia;
 
     public Admin(String nombre, String apellido, int dni, String user, String contrasenia) {
@@ -19,7 +25,7 @@ public class Admin extends Persona{
     }
 
     public void setUser(String user) {
-      User = user;
+        User = user;
     }
 
     public String getContrasenia() {
@@ -27,25 +33,21 @@ public class Admin extends Persona{
     }
 
     public void setContrasenia(String contrasenia) {
-        this.Contrasenia = contrasenia;
+        Contrasenia = contrasenia;
     }
 
-
-    public void RegistrarAdmin() {
+    public static void RegistrarAdmin() {
         Scanner scanAdmin = new Scanner(System.in);
         System.out.println("Ingrese Nombre: ");
         String nombre = scanAdmin.nextLine();
-        scanAdmin.close();
 
         System.out.println("Ingrese Apellido: ");
         String apellido = scanAdmin.nextLine();
-        scanAdmin.close();
 
         System.out.println("Ingrese DNI: ");
         int dni = scanAdmin.nextInt();
         scanAdmin.nextLine(); // Consumir el salto de línea
-        scanAdmin.close();
-        
+
         String nombreUsuario;
         boolean nombreValido = false;
         do {
@@ -53,7 +55,7 @@ public class Admin extends Persona{
             nombreUsuario = scanAdmin.nextLine();
 
             // Verificar si el nombre de usuario ya existe en el archivo
-            if (VerificarNombre(nombreUsuario, new File("Personas.json"))) {
+            if (VerificarNombre(nombreUsuario, new File("administradores.json"))) {
                 System.out.println("Nombre de Usuario ya existe. Intente con otro nombre.");
             } else {
                 nombreValido = true;
@@ -63,27 +65,41 @@ public class Admin extends Persona{
         System.out.println("Ingrese Contraseña:");
         String contrasenia = scanAdmin.nextLine();
 
-        // Validar la contraseña
-        if (!validarContrasenia(contrasenia)) {
-            System.out.println("La contraseña no cumple con los requisitos. Debe tener más de 8 caracteres y contener letras y números.");
-            return;
-        }
+        // Crear nuevo administrador
+        Admin nuevoAdmin = new Admin(nombre, apellido, dni, nombreUsuario, contrasenia);
 
-        // Guardar los datos en el archivo
-        try (FileWriter writer = new FileWriter("Personas.json", true)) {
-            writer.write(nombre + "," + apellido + "," + dni + "," + nombreUsuario + "," + contrasenia + "\n");
+        // Guardar los datos en el archivo JSON
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Admin> adminList = new ArrayList<>();
+
+            // Leer el archivo JSON si existe y no está vacío
+            File file = new File("administradores.json");
+            if (file.exists() && file.length() != 0) {
+                CollectionType listType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Admin.class);
+                adminList = objectMapper.readValue(file, listType);
+            }
+
+            adminList.add(nuevoAdmin);
+            objectMapper.writeValue(file, adminList);
             System.out.println("Administrador registrado exitosamente.");
         } catch (IOException e) {
             System.out.println("Error al registrar el administrador: " + e.getMessage());
         }
     }
 
-    public boolean VerificarNombre(String nombre, File f) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(f))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts[0].equals(nombre)) {
+    public static boolean VerificarNombre(String nombreUsuario, File f) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            if (!f.exists() || f.length() == 0) {
+                return false;
+            }
+
+            CollectionType listType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Admin.class);
+            List<Admin> adminList = objectMapper.readValue(f, listType);
+
+            for (Admin admin : adminList) {
+                if (admin.getUser().equals(nombreUsuario)) {
                     return true;
                 }
             }
@@ -95,25 +111,11 @@ public class Admin extends Persona{
 
     public boolean validarContrasenia(String contrasenia) {
         // La contraseña debe tener más de 8 caracteres y debe contener al menos una letra y un número
-        return contrasenia.length() > 8 && Pattern.compile(".*[A-Za-z].*").matcher(contrasenia).matches() && Pattern.compile(".*\\d.*").matcher(contrasenia).matches();
+        return contrasenia.length() > 8 && contrasenia.matches(".[a-zA-Z].") && contrasenia.matches(".\\d.");
     }
-
-
     public boolean login(String nombreUsuario, String contrasenia) {
-        // Verificar si el nombre de usuario y la contraseña coinciden con algún administrador en el archivo
-        try (BufferedReader reader = new BufferedReader(new FileReader("Personas.json"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 2 && parts[0].equals(nombreUsuario) && parts[1].equals(contrasenia)) {
-                    return true; // Credenciales válidas encontradas
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
-        }
-        return false;
-
+        // Verificar si el nombre de usuario y la contraseña coinciden con las del administrador actual
+        return this.User.equals(nombreUsuario) && this.Contrasenia.equals(contrasenia);
     }
 
     @Override
