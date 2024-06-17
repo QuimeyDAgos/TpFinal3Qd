@@ -1,3 +1,5 @@
+package GestoresPack;
+
 import Reproductor.ArtistaManager;
 
 import java.util.Scanner;
@@ -21,7 +23,7 @@ public class MenuAdmin {
             switch (opcion)
             {
                 case 1:
-                    //// Aca llamamos MenuGestor
+                    //// Aca llamamos GestoresPack.MenuGestor
                     break;
                 case 2:
                     ///Menu Venta

@@ -2,18 +2,18 @@ package PersonasPack;
 
 import AlbumPack.Album;
 import AlbumPack.Cancion;
+import GestoresPack.Sistema;
 
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class GestoraPers {
+    public GestoraPers() {
+    }
 
-
-
-    public static void main(String[] args) {
+    public void GestAddPers(Scanner scanner){
         boolean salir = false;
         Jackson<Persona> jack = new Jackson<>();
-        Scanner scanner = new Scanner(System.in);
         while (!salir)
         {
             System.out.println("|------------Añadir-----------|");

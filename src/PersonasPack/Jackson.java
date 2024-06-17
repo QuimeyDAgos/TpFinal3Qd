@@ -1,6 +1,8 @@
 package PersonasPack;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.LinkedList;
 public class Jackson <T>{
 
     //Insertar datos en json 
-   /* public void guardarUnoEnlista (String nombreArchivo,T dato){
+   public void guardarUnoEnlista (String nombreArchivo,T dato){
 
         File archivo = new File(nombreArchivo);
         ObjectMapper  mapper = new ObjectMapper();
@@ -26,8 +28,8 @@ public class Jackson <T>{
             throw new RuntimeException(e);
         }
 
-    }*/
-    public void guardarUnoEnlista(String nombreArchivo, T dato) {
+    }
+    /*public void guardarUnoEnlista(String nombreArchivo, T dato) {
         File archivo = new File(nombreArchivo);
         ObjectMapper mapper = new ObjectMapper();
 
@@ -44,7 +46,7 @@ public class Jackson <T>{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
     public void guardarArray (String nombreArchivo, ArrayList<T> lista){
 
         File archivo = new File(nombreArchivo);
@@ -84,6 +86,7 @@ public class Jackson <T>{
     public void guardarHashSet (String nombreArchivo,HashSet<T>lista){
         File archivo = new File(nombreArchivo);
         ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         try{
 

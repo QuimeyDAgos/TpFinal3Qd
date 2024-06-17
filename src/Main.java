@@ -25,7 +25,7 @@ public class Main {
                         break;
                     case 2:
                         iniciarSesion(admin, scanner);
-                        //// aca llamamos MenuAdmin
+                        //// aca llamamos GestoresPack.MenuAdmin
                         break;
                     case 3:
                         salir = true;
