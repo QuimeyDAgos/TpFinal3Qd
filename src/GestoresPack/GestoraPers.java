@@ -15,6 +15,7 @@ public class GestoraPers {
     public void GestAddPers(Scanner scanner){
         boolean salir = false;
         Jackson<Persona> jack = new Jackson<>();
+        Sistema<Persona> sis =new Sistema<Persona>();
         while (!salir)
         {
             System.out.println("|------------Añadir-----------|");
@@ -29,11 +30,10 @@ public class GestoraPers {
 
             switch (opcionDos) {
                 case 1:
-                    // Creariamos una persona de tipo admin y se guardaria
-                    // guardarUnoEnlista("personas.json",admin);
+                   /// Gestor pers admin
                     break;
                 case 2:
-                    Sistema<Persona> sis =new Sistema<Persona>();
+
                     LinkedList<Cancion> lista_canciones2 = new LinkedList<>();
                     Album album2 = new Album("Future Nostalgia", 2021, lista_canciones2);
                     LinkedList<Album> lista_de_AlbumsDua = new LinkedList<>();
@@ -74,8 +74,15 @@ public class GestoraPers {
                 case 3:
 
                     // Creariamos una persona de tipo Cliente y se guardaria
+
                     Cliente cliente = new Cliente("Thomas", "Fernandez", 7777, "thomasFernandez", "2236915931");
-                    jack.guardarUnoEnlista("Personas.json", cliente);
+                    Cliente cliente1 = new Cliente("Quimey","DAgostino",8888,"quimeyDagostini","2237843921");
+                    Cliente cliente2 = new Cliente("Abril","del Rio",9999,"abruMay","2234674938");
+                    Cliente cliente3 = new Cliente("Damian","Lupo",2222,"damiLupo","2236578243");
+                   sis.guardarUnoEnlista("Personas.json",cliente);
+                   sis.guardarUnoEnlista("Personas.json",cliente1);
+                   sis.guardarUnoEnlista("Personas.json",cliente2);
+                   sis.guardarUnoEnlista("Personas.json",cliente3);
 
                     break;
                 case 4:

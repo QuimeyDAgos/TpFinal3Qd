@@ -18,6 +18,7 @@ public class Jackson <T>{
 
         File archivo = new File(nombreArchivo);
         ObjectMapper  mapper = new ObjectMapper();
+       mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         try {
             HashSet<T> lista_Personas = leerHashSet(nombreArchivo);
@@ -84,21 +85,21 @@ public class Jackson <T>{
 
 
     }
-    public void guardarHashSet (String nombreArchivo,HashSet<T>lista){
+    public void guardarHashSet(String nombreArchivo, HashSet<T> lista) {
         File archivo = new File(nombreArchivo);
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        try{
-
-            mapper.writeValue (archivo,lista);
-
-        }catch (IOException e){
-
+        HashSet<T> datosExistente = new HashSet<>();
+        try {
+            if (archivo.exists()) {
+                datosExistente = mapper.readValue(archivo, new TypeReference<HashSet<T>>() {});
+            }
+            datosExistente.addAll(lista);
+            mapper.writeValue(archivo, datosExistente);
+        } catch (IOException e) {
             throw new RuntimeException(e);
-
         }
-
     }
     //Lectura en diferentes colecciones
     public ArrayList<T> leerArray (String nombreArchivo){

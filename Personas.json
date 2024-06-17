@@ -1,4 +1,18 @@
 [ {
+  "nombre" : "Damian",
+  "apellido" : "Lupo",
+  "dni" : 2222,
+  "email" : "damiLupo",
+  "telefono" : "2236578243",
+  "historialEntr" : { }
+}, {
+  "nombre" : "Thomas",
+  "apellido" : "Fernandez",
+  "dni" : 7777,
+  "email" : "thomasFernandez",
+  "telefono" : "2236915931",
+  "historialEntr" : { }
+}, {
   "nombre" : "Natalia",
   "apellido" : "Peluso",
   "dni" : 893,
@@ -8,6 +22,20 @@
   "apellido" : "Stoesel ",
   "dni" : 324,
   "nombreEscenico" : "TINI"
+}, {
+  "nombre" : "Quimey",
+  "apellido" : "DAgostino",
+  "dni" : 8888,
+  "email" : "quimeyDagostini",
+  "telefono" : "2237843921",
+  "historialEntr" : { }
+}, {
+  "nombre" : "Abril",
+  "apellido" : "del Rio",
+  "dni" : 9999,
+  "email" : "abruMay",
+  "telefono" : "2234674938",
+  "historialEntr" : { }
 }, {
   "nombre" : "Dua",
   "apellido" : "Lipa",
