@@ -2,13 +2,11 @@ package GestoresPack;
 
 import AlbumPack.Album;
 import AlbumPack.Cancion;
-import PersonasPack.Artista;
-import PersonasPack.Cliente;
-import PersonasPack.Jackson;
-import PersonasPack.Persona;
-
+import PersonasPack.*;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
+
 
 public class GestoraPers {
     public GestoraPers() {
@@ -97,5 +95,81 @@ public class GestoraPers {
 
         }
 
+
+    public void modificarPersona(String nombreArchi){
+        Scanner in = new Scanner(System.in);
+        System.out.println("|---------Tipo Persona--------|");
+        System.out.println("| [1] Admin                   |");
+        System.out.println("| [2] Artista                 |");
+        System.out.println("| [3] Cliente                 |");
+        System.out.println("| [4] Salir                   |");
+        System.out.println("|-----------------------------|");
+        System.out.print(">>");
+        int opcion = in.nextInt();
+        Sistema<Persona>sis = new Sistema<Persona>();
+        HashSet<Persona>listaAdmin =sis.leerHashSet(nombreArchi);
+        System.out.println("Escriba el dni de la persona a modificar");
+        System.out.println("-----------------------------------------");
+        System.out.print(">>");
+        int dni = in.nextInt();
+        switch (opcion) {
+            case 1:
+               
+
+                Admin aux = (Admin) sis.buscarAdmin(listaAdmin, dni);
+                atributoAmodificar(aux, dni);
+                break;
+
+                case 2:
+                Artista auxDos = (Artista) sis.buscarAdmin(listaAdmin, dni);
+                atributoAmodificar(auxDos, dni);
+                
+                break;
+        
+            default:
+                    System.out.println("[ERORR]");
+                break;
+        }
+        sis.guardarHashSet(nombreArchi, listaAdmin);
+        in.close();
+
+
+    }
+    public void atributoAmodificar (Persona aux, int dni){
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("|-----------Modificar---------|");
+        System.out.println("|-----------Atributo----------|");
+        System.out.println("| [1] Nombre                  |");
+        System.out.println("| [2] Apellido                |");
+        System.out.println("| [3] Salir                   |");
+        System.out.println("|-----------------------------|");
+        System.out.print(">>");
+        int opcion = in.nextInt();
+        
+        switch (opcion) {
+            case 1:
+            String nuevoNombre = in.nextLine();
+            aux.setNombre(nuevoNombre);
+           
+ 
+                break;
+                case 2:
+                String nuevoApellido = in.nextLine();
+                aux.setNombre(nuevoApellido);
+
+                //Cambiar apellido
+                break;
+        
+            default:
+            System.out.println("[ERROR]");
+                break;
+        }
+        in.close();
+        
+
+
+
+}
 
     }

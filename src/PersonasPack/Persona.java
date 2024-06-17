@@ -4,7 +4,7 @@ public class Persona {
     protected String nombre;
     protected String apellido;
     protected int dni;
-    protected int id;
+   
 
     public Persona(String nombre, String apellido, int dni) {
         this.nombre = nombre;
@@ -37,6 +37,8 @@ public class Persona {
     public void setDni(int dni) {
         this.dni = dni;
     }
+
+
 
     @Override
     public String toString() {

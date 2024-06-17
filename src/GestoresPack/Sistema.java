@@ -96,7 +96,7 @@ public class Sistema<T> extends Jackson<T> {
 
     public void gestionarPersonas(String nombreArchi, Scanner scanner) {
         boolean salir = false;
-        
+        GestoraPers gestoraPers =new GestoraPers();
 
         while (!salir) {
             System.out.println("a");
@@ -105,12 +105,13 @@ public class Sistema<T> extends Jackson<T> {
             int opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                        GestoraPers gestoraPers =new GestoraPers();
+                        
                         gestoraPers.GestAddPers(scanner);
 
                     break;
                 case 2:
-                    // falta funcionalidad de modificar persona
+                  
+                    gestoraPers.modificarPersona(nombreArchi);
 
 
                     break;
