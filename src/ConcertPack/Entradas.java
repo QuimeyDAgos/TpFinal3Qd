@@ -5,26 +5,27 @@ import Interfaces.Vendible;
 
 public class Entradas implements Vendible {
     private boolean disponibilad;
-    private double precio;    
+    private double precio;
     private TipoEntrada tipo;
-    private int id;     
+    private int id;
 
-    public Entradas(int stock, TipoEntrada tipo,int id) {    
-        this.precio =calcularPrecio();    
+    public Entradas(double precio, TipoEntrada tipo, int id) {
+        this.precio = precio;
         this.tipo = tipo;
-        this.disponibilad=true;
+        this.disponibilad = true;
         this.id = id;
     }
 
-    public double calcularPrecio()
-    {
-        double prc = 10000;
-        if (this.getTipo() == TipoEntrada.VIP)
-        {
-            prc+=5000;
-        }
-        return prc;
+    private double calcularPrecioBase() {
+        return 10000; // Precio base de la entrada
     }
+
+    private void ajustarPrecioPorTipo() {
+        if (this.tipo == TipoEntrada.VIP) {
+            this.precio += 5000; // Ajustar el precio si es VIP
+        }
+    }
+
 
     public double getPrecio() {
         return precio;

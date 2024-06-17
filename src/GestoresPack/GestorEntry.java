@@ -1,21 +1,23 @@
 package GestoresPack;
-
 import ConcertPack.Entradas;
 import ConcertPack.TipoEntrada;
+import PersonasPack.Cliente;
 import PersonasPack.Jackson;
-
+import PersonasPack.Persona;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public class GestorEntry {
     private HashMap<Integer, Entradas> entradas;
+    private Sistema<Persona> sistema;
 
     public GestorEntry() {
         this.entradas = new HashMap<>();
+        this.sistema = new Sistema<>(); // Crear una instancia de Sistema
     }
-
     public void agregarEntrada(Scanner scanner) {
         try {
             System.out.println("Ingrese el ID de la entrada:");
@@ -75,7 +77,8 @@ public class GestorEntry {
         try {
             for (int i = 0; i < 500; i++) {
                 TipoEntrada tipo = (i / 50) % 2 == 0 ? TipoEntrada.GENERAL : TipoEntrada.VIP;
-                Entradas entrada = new Entradas(50, tipo, i + 1);
+                double precio = tipo == TipoEntrada.VIP ? calcularPrecioVIP() : 10000; // Calcular el precio según el tipo de entrada
+                Entradas entrada = new Entradas(precio, tipo, i + 1);
                 entradas.put(i + 1, entrada);
             }
             System.out.println("Entradas cargadas con éxito.");
@@ -85,6 +88,10 @@ public class GestorEntry {
         } catch (Exception e) {
             System.out.println("Error al cargar las entradas: " + e.getMessage());
         }
+    }
+
+    public double calcularPrecioVIP() {
+        return 15000; // Precio base de entrada VIP
     }
 
     public void mostrarEntradas() {
@@ -101,6 +108,40 @@ public class GestorEntry {
         this.entradas = entradas;
     }
 
+    public void venderEntrada(int idEntrada, int dniCliente) {
+        try {
+            if (!entradas.containsKey(idEntrada)) {
+                System.out.println("No existe una entrada con ese ID.");
+                return;
+            }
+
+            Entradas entrada = entradas.get(idEntrada);
+            if (!entrada.isDisponibilad()) {
+                System.out.println("La entrada no está disponible para la venta.");
+                return;
+            }
+
+            Cliente cliente = sistema.buscarClientePorDni(dniCliente);
+            if (cliente == null) {
+                System.out.println("No existe un cliente con ese DNI.");
+                return;
+            }
+
+            cliente.getHistorialEntr().put(idEntrada, entrada); // Agregar entrada al historial del cliente
+
+            entrada.venta(); // Realizar la venta
+            entrada.setDisponibilad(false); // Marcar como vendida
+
+            // Actualizar la entrada en el HashMap
+            entradas.put(idEntrada, entrada);
+            System.out.println("Entrada vendida con éxito.");
+
+            // Guardar las entradas actualizadas en el archivo
+            guardarEntradas();
+        } catch (Exception e) {
+            System.out.println("Error al vender la entrada: " + e.getMessage());
+        }
+    }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         GestorEntry gestorEntry = new GestorEntry();
@@ -113,7 +154,8 @@ public class GestorEntry {
             System.out.println("| [3] Modificar Disponibilidad    |");
             System.out.println("| [4] Cargar Entradas             |");
             System.out.println("| [5] Mostrar Entradas            |");
-            System.out.println("| [6] Salir                       |");
+            System.out.println("| [6] Vender Entrada              |");
+            System.out.println("| [7] Salir                       |");
             System.out.println("|---------------------------------|");
             System.out.print(">> ");
             int opcion = scanner.nextInt();
@@ -135,6 +177,13 @@ public class GestorEntry {
                     gestorEntry.mostrarEntradas();
                     break;
                 case 6:
+                    System.out.println("Ingrese el ID de la entrada a vender:");
+                    int idEntrada = scanner.nextInt();
+                    System.out.println("Ingrese el DNI del cliente:");
+                    int dniCliente = scanner.nextInt();
+                    gestorEntry.venderEntrada(idEntrada, dniCliente);
+                    break;
+                case 7:
                     salir = true;
                     System.out.println("Saliendo del programa...");
                     break;
@@ -146,4 +195,5 @@ public class GestorEntry {
 
         scanner.close();
     }
+
 }

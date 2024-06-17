@@ -193,5 +193,13 @@ public class Sistema<T> extends Jackson<T> {
                 break;
         }
     }
+    public Cliente buscarClientePorDni(int dni) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getDni() == dni) {
+                return cliente;
+            }
+        }
+        return null; // Si no se encuentra el cliente
+    }
 
 }
