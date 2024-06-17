@@ -111,12 +111,12 @@ public class Sistema<T> extends Jackson<T> {
                     break;
                 case 2:
                   
-                    gestoraPers.modificarPersona(nombreArchi);
+                     gestoraPers.modificarPersona(nombreArchi);
 
 
                     break;
                 case 3:
-                    gestionarEliminacionPersona(nombreArchi,scanner);
+                    gestionarEliminacionPersona(nombreArchi,scanner); // meter en gestora personas y llamar gestoraPers.gestionarEliminacion xdd
                     break;
                 case 4 :
                     salir=true;

@@ -3,8 +3,7 @@ package SectoresPack;
 import ProductosPack.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import Excepciones.TipoDeSectorNoValidoExcepcion;
+import Excepciones.*;
 
 public class GestorSectores<T extends Sectores> {
 

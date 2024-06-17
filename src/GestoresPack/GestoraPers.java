@@ -97,6 +97,7 @@ public class GestoraPers {
 
 
     public void modificarPersona(String nombreArchi){
+        
         Scanner in = new Scanner(System.in);
         System.out.println("|---------Tipo Persona--------|");
         System.out.println("| [1] Admin                   |");
@@ -108,27 +109,40 @@ public class GestoraPers {
         int opcion = in.nextInt();
         Sistema<Persona>sis = new Sistema<Persona>();
         HashSet<Persona>listaAdmin =sis.leerHashSet(nombreArchi);
-        System.out.println("Escriba el dni de la persona a modificar");
-        System.out.println("-----------------------------------------");
-        System.out.print(">>");
-        int dni = in.nextInt();
-        switch (opcion) {
-            case 1:
-               
+        boolean salir = false;
+        while (!salir){
+            System.out.println("Escriba el dni de la persona a modificar");
+            System.out.println("-----------------------------------------");
+            System.out.print(">>");
+            int dni = in.nextInt();
+            switch (opcion) {
+                case 1:
+                   
+    
+                    Admin aux = (Admin) sis.buscarAdmin(listaAdmin, dni);
+                    atributoAmodificar(aux, dni);
+                    break;
+    
+                    case 2:
+                    Artista auxDos = (Artista) sis.buscarAdmin(listaAdmin, dni);
+                    atributoAmodificar(auxDos, dni);
+                    
+                    break;
+    
+                    case 3:       
+                    Cliente auxTres = (Cliente) sis.buscarAdmin(listaAdmin, dni);
+                    atributoAmodificar(auxTres, dni);
 
-                Admin aux = (Admin) sis.buscarAdmin(listaAdmin, dni);
-                atributoAmodificar(aux, dni);
-                break;
-
-                case 2:
-                Artista auxDos = (Artista) sis.buscarAdmin(listaAdmin, dni);
-                atributoAmodificar(auxDos, dni);
-                
-                break;
-        
-            default:
-                    System.out.println("[ERORR]");
-                break;
+                    break;
+                    case 4:
+                        salir = true;
+                        System.out.println("Volviendo...");
+                    break;
+            
+                default:
+                        System.out.println("[ERORR]");
+                    break;
+            }
         }
         sis.guardarHashSet(nombreArchi, listaAdmin);
         in.close();
@@ -146,25 +160,32 @@ public class GestoraPers {
         System.out.println("|-----------------------------|");
         System.out.print(">>");
         int opcion = in.nextInt();
+        boolean salir = false;
+            while (!salir){
+                switch (opcion) {
+                    case 1:
+                    String nuevoNombre = in.nextLine();
+                    aux.setNombre(nuevoNombre);
+                   
+         
+                        break;
+                        case 2:
+                        String nuevoApellido = in.nextLine();
+                        aux.setNombre(nuevoApellido);
         
-        switch (opcion) {
-            case 1:
-            String nuevoNombre = in.nextLine();
-            aux.setNombre(nuevoNombre);
-           
- 
-                break;
-                case 2:
-                String nuevoApellido = in.nextLine();
-                aux.setNombre(nuevoApellido);
+                        //Cambiar apellido
+                        break;
+                        case 3:
+                        salir= true;
+                        System.out.println("Volviendo...");
+                        break;
+                
+                    default:
+                    System.out.println("[ERROR]");
+                        break;
+                }
 
-                //Cambiar apellido
-                break;
-        
-            default:
-            System.out.println("[ERROR]");
-                break;
-        }
+            }
         in.close();
         
 
