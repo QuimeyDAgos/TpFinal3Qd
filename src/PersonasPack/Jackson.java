@@ -11,7 +11,7 @@ import java.util.LinkedList;
 public class Jackson <T>{
 
     //Insertar datos en json 
-    public void guardarUnoEnlista (String nombreArchivo,T dato){
+   /* public void guardarUnoEnlista (String nombreArchivo,T dato){
 
         File archivo = new File(nombreArchivo);
         ObjectMapper  mapper = new ObjectMapper();
@@ -26,6 +26,24 @@ public class Jackson <T>{
             throw new RuntimeException(e);
         }
 
+    }*/
+    public void guardarUnoEnlista(String nombreArchivo, T dato) {
+        File archivo = new File(nombreArchivo);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            if (!archivo.exists()) {
+                archivo.createNewFile();
+            }
+
+            HashSet<T> lista_Personas = leerHashSet(nombreArchivo);
+            lista_Personas.add(dato);
+
+            mapper.writeValue(archivo, lista_Personas);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void guardarArray (String nombreArchivo, ArrayList<T> lista){
 
