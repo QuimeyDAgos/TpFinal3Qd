@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package Excepciones;
 
 public class TipoDeSectorNoValidoExcepcion extends RuntimeException {
@@ -18,5 +19,16 @@ public class TipoDeSectorNoValidoExcepcion extends RuntimeException {
         super(cause);
     }
 
+
+=======
+
+package Excepciones;
+
+public class TipoDeSectorNoValidoExcepcion extends Exception
+{
+    public TipoDeSectorNoValidoExcepcion (String msj)
+    {
+        super(msj);
+    }
 
 }

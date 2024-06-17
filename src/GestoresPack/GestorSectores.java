@@ -1,9 +1,17 @@
-package SectoresPack;
+package GestoresPack;
 
 import ProductosPack.*;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD:src/SectoresPack/GestorSectores.java
 import Excepciones.*;
+=======
+
+import Excepciones.TipoDeSectorNoValidoExcepcion;
+import SectoresPack.SectorComida;
+import SectoresPack.SectorMerch;
+import SectoresPack.Sectores;
+>>>>>>> 32235a06f2af22f0a77fb83f775b5798e8652e2a:src/GestoresPack/GestorSectores.java
 
 public class GestorSectores<T extends Sectores> {
 

@@ -1,4 +1,5 @@
 package PersonasPack;
+import ConcertPack.Entradas;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -6,6 +7,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -241,6 +243,17 @@ public class Jackson <T>{
 
         }
         
+    }
+    public void guardarHashMap(String nombreArchivo, HashMap<Integer, Entradas> mapa) {
+        File archivo = new File(nombreArchivo);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        try {
+            mapper.writeValue(archivo, mapa);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
