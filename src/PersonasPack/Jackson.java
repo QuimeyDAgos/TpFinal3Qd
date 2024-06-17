@@ -94,6 +94,8 @@ public class Jackson <T>{
         try {
             if (archivo.exists()) {
                 datosExistente = mapper.readValue(archivo, new TypeReference<HashSet<T>>() {});
+                // Eliminar elementos existentes que están en lista
+                datosExistente.removeAll(lista);
             }
             datosExistente.addAll(lista);
             mapper.writeValue(archivo, datosExistente);
