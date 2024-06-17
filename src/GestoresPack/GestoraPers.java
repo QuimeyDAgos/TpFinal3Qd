@@ -33,7 +33,7 @@ public class GestoraPers {
                     // guardarUnoEnlista("personas.json",admin);
                     break;
                 case 2:
-                    Sistema<Persona> sis =new Sistema<Persona>();
+                    SistemaPersona<Persona> sis =new SistemaPersona<Persona>();
                     LinkedList<Cancion> lista_canciones2 = new LinkedList<>();
                     Album album2 = new Album("Future Nostalgia", 2021, lista_canciones2);
                     LinkedList<Album> lista_de_AlbumsDua = new LinkedList<>();
@@ -107,7 +107,7 @@ public class GestoraPers {
         System.out.println("|-----------------------------|");
         System.out.print(">>");
         int opcion = in.nextInt();
-        Sistema<Persona>sis = new Sistema<Persona>();
+        SistemaPersona<Persona> sis = new SistemaPersona<Persona>();
         HashSet<Persona>listaAdmin =sis.leerHashSet(nombreArchi);
         boolean salir = false;
         while (!salir){

@@ -21,7 +21,7 @@ public static void main(String[] args) {
                  HashSet<Admin> listaAdmin = new HashSet<>();
                  HashSet<Artista> listaArtistas = new HashSet<>();
                  HashSet<Cliente> listaClientes = new HashSet<>();
-                 Sistema<Persona> sistemaUno = new Sistema<Persona>(listaAdmin, listaArtistas, listaClientes);
+                 SistemaPersona<Persona> sistemaUno = new SistemaPersona<Persona>(listaAdmin, listaArtistas, listaClientes);
                  sistemaUno.gestionarPersonas("Personas.json",in);
 
                  break;

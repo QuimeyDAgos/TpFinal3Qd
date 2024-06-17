@@ -8,6 +8,8 @@ public class Productos {
     protected double precio;
     protected int stock;
     protected boolean disponibilad;
+    protected int id;
+    protected String tipo;
 
     public String getNombre() {
         return nombre;
@@ -33,11 +35,29 @@ public class Productos {
         this.stock = stock;
     }
 
-    public Productos(String nombre, double precio, int stock, boolean disponibilidad) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Productos(String nombre, double precio, int stock, boolean disponibilad, int id, String tipo) {
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
-        this.disponibilad=disponibilidad;
+        this.disponibilad = disponibilad;
+        this.id = id;
+        this.tipo = tipo;
     }
 
     @Override

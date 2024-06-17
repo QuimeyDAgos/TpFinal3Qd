@@ -12,11 +12,11 @@ import java.util.Scanner;
 
 public class GestorEntry {
     private HashMap<Integer, Entradas> entradas;
-    private Sistema<Persona> sistema;
+    private SistemaPersona<Persona> sistema;
 
     public GestorEntry() {
         this.entradas = new HashMap<>();
-        this.sistema = new Sistema<>(); // Crear una instancia de Sistema
+        this.sistema = new SistemaPersona<>(); // Crear una instancia de Sistema
     }
     public void agregarEntrada(Scanner scanner) {
         try {

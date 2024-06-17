@@ -5,21 +5,21 @@ import PersonasPack.*;
 
 import java.util.*;
 
-public class Sistema<T> extends Jackson<T> {
+public class SistemaPersona<T> extends Jackson<T> {
 
     private HashSet<Admin> listaAdmin=new HashSet<>();
     private HashSet<Artista> artistas=new HashSet<>();
     private HashSet<Cliente> clientes=new HashSet<>();
     private HashSet<Persona> general = new HashSet<>();
 
-    public Sistema(HashSet<Admin> listaAdmin, HashSet<Artista> artistas, HashSet<Cliente> clientes) {
+    public SistemaPersona(HashSet<Admin> listaAdmin, HashSet<Artista> artistas, HashSet<Cliente> clientes) {
         this.listaAdmin = listaAdmin;
         this.artistas = artistas;
         this.clientes = clientes;
         
     }
 
-    public Sistema() {
+    public SistemaPersona() {
     }
 
     // Metodos

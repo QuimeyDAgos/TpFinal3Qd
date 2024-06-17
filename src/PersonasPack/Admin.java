@@ -53,7 +53,7 @@ public class Admin extends Persona{
             nombreUsuario = scanAdmin.nextLine();
 
             // Verificar si el nombre de usuario ya existe en el archivo
-            if (VerificarNombre(nombreUsuario, new File("administradores.txt"))) {
+            if (VerificarNombre(nombreUsuario, new File("Personas.json"))) {
                 System.out.println("Nombre de Usuario ya existe. Intente con otro nombre.");
             } else {
                 nombreValido = true;
@@ -70,7 +70,7 @@ public class Admin extends Persona{
         }
 
         // Guardar los datos en el archivo
-        try (FileWriter writer = new FileWriter("administradores.txt", true)) {
+        try (FileWriter writer = new FileWriter("Personas.json", true)) {
             writer.write(nombre + "," + apellido + "," + dni + "," + nombreUsuario + "," + contrasenia + "\n");
             System.out.println("Administrador registrado exitosamente.");
         } catch (IOException e) {
@@ -101,7 +101,7 @@ public class Admin extends Persona{
 
     public boolean login(String nombreUsuario, String contrasenia) {
         // Verificar si el nombre de usuario y la contraseña coinciden con algún administrador en el archivo
-        try (BufferedReader reader = new BufferedReader(new FileReader("administradores.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Personas.json"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
