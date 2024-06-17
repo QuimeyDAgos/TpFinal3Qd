@@ -2,11 +2,9 @@ package AlbumPack;
 
 public class Cancion {
     private String titulo;
-    private int duracion; // Duración en segundos
 
-    public Cancion(String titulo, int duracion) {
+    public Cancion(String titulo) {
         this.titulo = titulo;
-        this.duracion = duracion;
     }
 
     // Métodos getters y setters
@@ -18,12 +16,5 @@ public class Cancion {
         this.titulo = titulo;
     }
 
-    public int getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
-    }
 }
 

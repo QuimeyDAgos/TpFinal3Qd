@@ -5,8 +5,10 @@ public class Cliente extends Persona {
     private String email;
     private String telefono;
 
+    
+
     public Cliente(String nombre, String apellido, int dni, String email, String telefono) {
-        super(nombre, apellido, dni);
+        super(nombre,apellido, dni);
         this.email = email;
         this.telefono = telefono;
     }

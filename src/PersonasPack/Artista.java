@@ -4,7 +4,7 @@ import AlbumPack.Album;
 
 import java.util.LinkedList;
 
-public abstract class Artista extends Persona {
+public class Artista extends Persona {
     protected String nombreEscenico;
     protected LinkedList<Album> albums;
 
@@ -52,9 +52,6 @@ public abstract class Artista extends Persona {
         return null;
     }
 
-
-    // Método abstracto que debe ser implementado por las subclases
-    public abstract LinkedList<Album> getAlbums();
 
 
 

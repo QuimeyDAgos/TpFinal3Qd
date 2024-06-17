@@ -1,14 +1,8 @@
 package PersonasPack;
-
-import AlbumPack.Album;
-
-import java.util.LinkedList;
-
-public class Persona {
+public abstract class Persona {
     protected String nombre;
     protected String apellido;
     protected int dni;
-    protected int id;
 
     public Persona(String nombre, String apellido, int dni) {
         this.nombre = nombre;
