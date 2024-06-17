@@ -19,7 +19,7 @@ public class Entradas implements Vendible {
     public double calcularPrecio()
     {
         double prc = 10000;
-        if (this.getTipo() == tipo.VIP)
+        if (this.getTipo() == TipoEntrada.VIP)
         {
             prc+=5000;
         }
