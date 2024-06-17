@@ -1,11 +1,11 @@
 package Reproductor;
 
-public class Cancion {
+public class Song {
     private String nombre;
     private String ruta;
     private String imagen;
 
-    public Cancion(String nombre, String ruta, String imagen) {
+    public Song(String nombre, String ruta, String imagen) {
         this.nombre = nombre;
         this.ruta = ruta;
         this.imagen = imagen;
