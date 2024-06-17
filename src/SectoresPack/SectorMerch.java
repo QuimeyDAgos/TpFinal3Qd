@@ -1,6 +1,7 @@
 package SectoresPack;
 
 import Excepciones.ProductoNoDisponibleExepcion;
+import GestoresPack.GestorProductos;
 import ProductosPack.Merch;
 import ProductosPack.Productos;
 import Interfaces.Gestorable;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 
-public class SectorMerch extends Sectores implements Gestorable<Merch> {
+public class SectorMerch extends GestorProductos implements Gestorable<Merch> {
     private TreeMap<Integer, Merch> arbol;
 
     public TreeMap<Integer, Merch> getArbol() {

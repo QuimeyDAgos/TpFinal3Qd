@@ -15,7 +15,7 @@ public class GestoraPers {
     public void GestAddPers(Scanner scanner){
         boolean salir = false;
         Jackson<Persona> jack = new Jackson<>();
-        Sistema<Persona> sis =new Sistema<Persona>();
+        SistemaPersona<Persona> sis =new SistemaPersona<>();
 
         while (!salir)
         {
@@ -145,7 +145,7 @@ public class GestoraPers {
         System.out.println("|-----------------------------|");
         System.out.print(">>");
         int opcion = in.nextInt();
-        Sistema<Persona>sis = new Sistema<Persona>();
+        SistemaPersona<Persona>sis = new SistemaPersona<>();
         HashSet<Persona>listaAdmin =sis.leerHashSet(nombreArchi);
         boolean salir = false;
         while (!salir){

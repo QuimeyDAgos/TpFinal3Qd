@@ -4,7 +4,7 @@ import Excepciones.ProductoNoDisponibleExepcion;
 import Interfaces.Vendible;
 
 public class Comida extends Productos implements Vendible {
-    private String tipo;
+    private String variedad;
 
     public String getTipo() {
         return tipo;
@@ -14,18 +14,18 @@ public class Comida extends Productos implements Vendible {
         this.tipo = tipo;
     }
 
-    public Comida(String nombre, double precio, int stock, String tipo,boolean disponibilidad) {
-        super(nombre, precio, stock,disponibilidad);
-        this.tipo = tipo;
+    public Comida(String nombre, double precio, int stock, boolean disponibilad, int id, String tipo, String variedad) {
+        super(nombre, precio, stock, disponibilad, id, tipo);
+        this.variedad = variedad;
     }
 
-@Override 
+    @Override
     public void venta()
     {
         try{
         if(stock>0 && disponibilad)
         {
-           System.out.println("Se realizo la venta con exito");
+           System.out.println("Se realizo la venta de" +nombre+ "con exito");
            stock--;
            if(stock==0)
            {

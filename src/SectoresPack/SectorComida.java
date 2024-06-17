@@ -1,5 +1,6 @@
 package SectoresPack;
 
+import GestoresPack.GestorProductos;
 import Interfaces.Gestorable;
 import ProductosPack.Comida;
 import ProductosPack.Productos;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 import Excepciones.CapacidadExcedidaExcepcion;
 import Excepciones.ProductoNoDisponibleExepcion;
 
-public class SectorComida extends Sectores implements Gestorable<Comida> {
+public class SectorComida extends GestorProductos implements Gestorable<Comida> {
 
     LinkedHashSet<Comida> menu = new LinkedHashSet<>();
 
