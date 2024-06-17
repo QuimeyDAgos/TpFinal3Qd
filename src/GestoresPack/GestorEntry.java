@@ -67,7 +67,7 @@ public class GestorEntry {
         }
     }
     public void guardarEntradas() {
-        Jackson jackson = new Jackson();
+        Jackson<Entradas>jackson = new Jackson<>();
         jackson.guardarHashMap("Entradas.json", entradas);
     }
 
