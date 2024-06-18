@@ -1,99 +1,85 @@
 [ {
   "nombre" : "Pizza",
-  "precio" : 1000.5,
+  "precio" : 10.5,
   "stock" : 20,
-  "disponibilad" : true,
   "id" : 1,
   "tipo" : "Comida"
 }, {
   "nombre" : "Hamburguesa",
-  "precio" : 800.0,
+  "precio" : 8.0,
   "stock" : 15,
-  "disponibilad" : true,
   "id" : 2,
   "tipo" : "Comida"
 }, {
   "nombre" : "Sushi",
-  "precio" : 1200.0,
+  "precio" : 12.0,
   "stock" : 10,
-  "disponibilad" : true,
   "id" : 3,
   "tipo" : "Comida"
 }, {
   "nombre" : "Ensalada",
-  "precio" : 500.0,
+  "precio" : 5.0,
   "stock" : 30,
-  "disponibilad" : true,
   "id" : 4,
   "tipo" : "Comida"
 }, {
-  "nombre" : "Taco",
-  "precio" : 700.0,
-  "stock" : 25,
-  "disponibilad" : true,
+  "nombre" : "Hot Dog",
+  "precio" : 4.5,
+  "stock" : 40,
   "id" : 5,
   "tipo" : "Comida"
 }, {
-  "nombre" : "Burrito",
-  "precio" : 800.5,
-  "stock" : 20,
-  "disponibilad" : true,
+  "nombre" : "Sandwich",
+  "precio" : 5.5,
+  "stock" : 25,
+  "id" : 6,
+  "tipo" : "Comida"
+}, {
+  "nombre" : "Empanada",
+  "precio" : 3.0,
+  "stock" : 35,
   "id" : 7,
   "tipo" : "Comida"
 }, {
-  "nombre" : "Camisa",
-  "precio" : 250.0,
-  "stock" : 21,
-  "disponibilad" : true,
+  "nombre" : "Camiseta",
+  "precio" : 15.0,
+  "stock" : 50,
   "id" : 8,
   "tipo" : "Merch"
 }, {
   "nombre" : "Gorra",
-  "precio" : 12000.0,
+  "precio" : 12.0,
   "stock" : 30,
-  "disponibilad" : true,
   "id" : 9,
   "tipo" : "Merch"
 }, {
   "nombre" : "Taza",
-  "precio" : 800.0,
+  "precio" : 8.0,
   "stock" : 40,
-  "disponibilad" : true,
   "id" : 10,
   "tipo" : "Merch"
 }, {
   "nombre" : "Llaveros",
-  "precio" : 500.0,
+  "precio" : 5.0,
   "stock" : 60,
-  "disponibilad" : true,
   "id" : 11,
   "tipo" : "Merch"
 }, {
   "nombre" : "Póster",
-  "precio" : 1000.0,
+  "precio" : 10.0,
   "stock" : 20,
-  "disponibilad" : true,
   "id" : 12,
   "tipo" : "Merch"
 }, {
-  "nombre" : "Nachos",
-  "precio" : 235.0,
-  "stock" : 20,
-  "disponibilad" : true,
+  "nombre" : "Sudadera",
+  "precio" : 25.0,
+  "stock" : 25,
   "id" : 13,
-  "tipo" : "Snack"
-}, {
-  "nombre" : "Mate",
-  "precio" : 200.0,
-  "stock" : 20,
-  "disponibilad" : true,
-  "id" : 14,
   "tipo" : "Merch"
 }, {
-  "nombre" : "Papas",
-  "precio" : 200.0,
-  "stock" : 20,
-  "disponibilad" : true,
-  "id" : 15,
-  "tipo" : "Snack"
+  "nombre" : "Bolígrafo",
+  "precio" : 2.0,
+  "stock" : 100,
+  "id" : 14,
+  "tipo" : "Merch"
 } ]

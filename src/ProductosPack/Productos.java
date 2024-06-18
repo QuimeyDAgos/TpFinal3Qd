@@ -4,7 +4,6 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-
 public class Productos implements Comparable<Productos>{
 
     protected String nombre;
@@ -14,12 +13,7 @@ public class Productos implements Comparable<Productos>{
     protected int id;
     protected String tipo;
 
-    public boolean isDisponibilad() {
-        return disponibilad;
-    }
-
-    public void setDisponibilad(boolean disponibilad) {
-        this.disponibilad = disponibilad;
+    public Productos() {
     }
 
     public String getNombre() {
@@ -62,9 +56,6 @@ public class Productos implements Comparable<Productos>{
         this.tipo = tipo;
     }
 
-    public Productos() {
-    }
-
     public Productos(String nombre, double precio, int stock, boolean disponibilad, int id, String tipo) {
         this.nombre = nombre;
         this.precio = precio;
@@ -97,10 +88,8 @@ public class Productos implements Comparable<Productos>{
     }
 
     @Override
-    public int compareTo(Productos o) {
-        return Integer.compare(this.id, o.id);
+    public int compareTo(Productos other) {
+        // lógica de comparación
+        return Integer.compare(this.getId(), other.getId());
     }
-
-
-
 }

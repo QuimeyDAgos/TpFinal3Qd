@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Jackson <T> {
+
     //Insertar datos en json 
     public void guardarUnoEnlista(String nombreArchivo, T dato) {
 
@@ -275,7 +276,8 @@ public class Jackson <T> {
             throw new RuntimeException(e);
         }
     }
-    public TreeSet<Productos> cargarTreeSetBis(String archivo) {
+
+    public TreeSet<Productos> cargarTreeSet(String archivo) {
         ObjectMapper mapper = new ObjectMapper();
         TreeSet<Productos> retorno = new TreeSet<>();
 
@@ -295,23 +297,19 @@ public class Jackson <T> {
         return retorno;
     }
 
-
-    public void guardarTreeSet(String nombreArchivo, TreeSet<Productos> lista) {
-        File archivo = new File(nombreArchivo);
+    public void guardarTreeSet(String archivo, TreeSet<Productos> treeSet) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         try {
-            mapper.writeValue(archivo, lista);
+            File file = new File(archivo);
+            mapper.writeValue(file, treeSet);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error al guardar el TreeSet en el archivo: " + archivo);
+            System.out.println("Mensaje de error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-
-    }
-
-
-
-
+}
 
