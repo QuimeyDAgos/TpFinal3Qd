@@ -1,8 +1,11 @@
 package ProductosPack;
 
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-public class Productos {
+@JsonIgnoreProperties(ignoreUnknown = true)
+
+public class Productos implements Comparable<Productos>{
 
     protected String nombre;
     protected double precio;
@@ -10,6 +13,14 @@ public class Productos {
     protected boolean disponibilad;
     protected int id;
     protected String tipo;
+
+    public boolean isDisponibilad() {
+        return disponibilad;
+    }
+
+    public void setDisponibilad(boolean disponibilad) {
+        this.disponibilad = disponibilad;
+    }
 
     public String getNombre() {
         return nombre;
@@ -51,6 +62,9 @@ public class Productos {
         this.tipo = tipo;
     }
 
+    public Productos() {
+    }
+
     public Productos(String nombre, double precio, int stock, boolean disponibilad, int id, String tipo) {
         this.nombre = nombre;
         this.precio = precio;
@@ -81,4 +95,12 @@ public class Productos {
     public int hashCode() {
         return Objects.hash(nombre, precio);
     }
+
+    @Override
+    public int compareTo(Productos o) {
+        return Integer.compare(this.id, o.id);
+    }
+
+
+
 }

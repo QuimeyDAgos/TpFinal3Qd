@@ -1,4 +1,4 @@
-package SectoresPack;
+/*package SectoresPack;
 
 import Excepciones.ProductoNoDisponibleExepcion;
 import GestoresPack.GestorProductos;
@@ -116,7 +116,7 @@ arbol.remove(eliminado.getCodigo());
 
 
 
-
+*/
 
 
 

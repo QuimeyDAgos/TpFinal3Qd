@@ -2,7 +2,9 @@ package ProductosPack;
 import Interfaces.*;
 import Excepciones.*;
 
-public class Merch extends Productos implements Vendible {
+import java.io.Serializable;
+
+public class Merch extends Productos implements Vendible, Serializable {
     private String talle;
     private String color;
 
@@ -28,42 +30,43 @@ public class Merch extends Productos implements Vendible {
         this.color = color;
     }
 
+    public Merch() {
+    }
+
     @Override
-    public void venta()
-    {
-        try{
-        if(stock>0 && disponibilad)
-        {
-           System.out.println("Se realizo la venta de" +nombre+ " con exito");
-           stock--;
-           if(stock==0)
-           {
-            this.disponibilad=false;
-           }
-        }
-        else{
-            throw new ProductoNoDisponibleExepcion("El producto no esta disponible");
-        }
-        }catch(ProductoNoDisponibleExepcion e)
-        {
+    public void venta() {
+        try {
+            if (stock > 0 && disponibilad) {
+                System.out.println("Se realizo la venta de" + nombre + " con exito");
+                stock--;
+                if (stock == 0) {
+                    this.disponibilad = false;
+                }
+            } else {
+                throw new ProductoNoDisponibleExepcion("El producto no esta disponible");
+            }
+        } catch (ProductoNoDisponibleExepcion e) {
             System.out.println(e.getMessage());
         }
-    } 
-
-    
-
-    @Override
-    public void aumento(double porcentaje)
-    {  
-        setPrecio(precio+(precio*porcentaje));
     }
 
 
     @Override
+    public void aumento(double porcentaje) {
+        setPrecio(precio + (precio * porcentaje));
+    }
+
+    @Override
     public String toString() {
-        return "Mercj{" +
+        return "Merch{" +
                 "talle='" + talle + '\'' +
                 ", color='" + color + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", stock=" + stock +
+                ", disponibilad=" + disponibilad +
+                ", id=" + id +
+                ", tipo='" + tipo + '\'' +
                 '}';
     }
 }
