@@ -1,9 +1,16 @@
 [ {
-  "nombre" : "Abril",
-  "apellido" : "del Rio",
-  "dni" : 9999,
-  "email" : "abruMay",
-  "telefono" : "2234674938",
+  "nombre" : "Lucas",
+  "apellido" : "Lopez",
+  "dni" : 3322,
+  "email" : "luquiLopez",
+  "telefono" : "2234566541",
+  "historialEntr" : { }
+}, {
+  "nombre" : "Thomas",
+  "apellido" : "Fernandez",
+  "dni" : 7777,
+  "email" : "thomasFernandez",
+  "telefono" : "2236915931",
   "historialEntr" : { }
 }, {
   "nombre" : "Natalia",
@@ -16,6 +23,13 @@
   "dni" : 324,
   "nombreEscenico" : "TINI"
 }, {
+  "nombre" : "Damian",
+  "apellido" : "Lupo",
+  "dni" : 2222,
+  "email" : "damiLupo",
+  "telefono" : "2236578243",
+  "historialEntr" : { }
+}, {
   "nombre" : "Quimey",
   "apellido" : "DAgostino",
   "dni" : 8888,
@@ -23,11 +37,11 @@
   "telefono" : "2237843921",
   "historialEntr" : { }
 }, {
-  "nombre" : "Damian",
-  "apellido" : "Lupo",
-  "dni" : 2222,
-  "email" : "damiLupo",
-  "telefono" : "2236578243",
+  "nombre" : "Abril",
+  "apellido" : "del Rio",
+  "dni" : 9999,
+  "email" : "abruMay",
+  "telefono" : "2234674938",
   "historialEntr" : { }
 }, {
   "nombre" : "Dua",
@@ -44,11 +58,4 @@
   "apellido" : "Lombardo",
   "dni" : 123,
   "nombreEscenico" : "Duki"
-}, {
-  "nombre" : "Thomas",
-  "apellido" : "Fernandez",
-  "dni" : 7777,
-  "email" : "thomasFernandez",
-  "telefono" : "2236915931",
-  "historialEntr" : { }
 } ]

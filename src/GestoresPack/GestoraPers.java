@@ -89,31 +89,24 @@ public class GestoraPers {
                     break;
 
                 case 3:
-
+                    scanner.nextLine();
+                    System.out.println("Ingrese nombre");
+                    String nom = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Apellido");
+                    String ape = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Mail");
+                    String mail = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Telefono");
+                    String tel = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("DNI");
+                    int dni = scanner.nextInt();
+                    Cliente aux =new Cliente(nom,ape,dni,mail,tel);
                     // Creariamos una persona de tipo Cliente y se guardaria
-
-                    Cliente cliente = new Cliente("Thomas", "Fernandez", 7777, "thomasFernandez", "2236915931");
-                    if (!sis.getGeneral().contains(cliente)) {
-                        sis.getGeneral().add(cliente);
-                    }
-
-                    Cliente cliente1 = new Cliente("Quimey","DAgostino",8888,"quimeyDagostini","2237843921");
-                    if (!sis.getGeneral().contains(cliente1)) {
-                        sis.getGeneral().add(cliente1);
-                    }
-                    Cliente cliente2 = new Cliente("Abril","del Rio",9999,"abruMay","2234674938");
-                    if (!sis.getGeneral().contains(cliente2)) {
-                    sis.getGeneral().add(cliente2);
-                }
-                    Cliente cliente3 = new Cliente("Damian","Lupo",2222,"damiLupo","2236578243");
-                    if (!sis.getGeneral().contains(cliente3)) {
-                        sis.getGeneral().add(cliente3);
-                    }
-
-                  sis.getGeneral().add (cliente1);
-                  sis.getGeneral().add (cliente2);
-                  sis.getGeneral().add (cliente3);
-                  jack.guardarHashSet("Personas.json", sis.getGeneral());
+                  jack.guardarUnoEnlista("Personas.json",aux);
                    salir=true;
                     break;
                 case 4:

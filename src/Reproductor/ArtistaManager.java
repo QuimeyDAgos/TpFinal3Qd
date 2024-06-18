@@ -44,11 +44,11 @@ public class ArtistaManager {
                 new Song("Hallucinate","src/Reproductor/musica/Dua/Dua Lipa - Hallucinate .wav","src/Reproductor/img/Dua .png")
         ));
         artistasCanciones.put("Duki",Arrays.asList(
-                new Song("Dont Lie","src/Reproductor/musica/Duki/DUKI, Quevedo - dont Lie.wav",""),
-                new Song("Celosa","src/Reproductor/musica/Duki/DUKI - Celosa .wav",""),
-                new Song("Chico Estrella","src/Reproductor/musica/Duki/DUKI - Chico Estrella .wav",""),
-                new Song("GiGi","src/Reproductor/musica/Duki/DUKI - GiGi .wav",""),
-                new Song("GIVENCHY","src/Reproductor/musica/Duki/DUKI - GIVENCHY .wav","")
+                new Song("Dont Lie","src/Reproductor/musica/Duki/DUKI, Quevedo - dont Lie.wav","src/Reproductor/img/Duko You Know.png"),
+                new Song("Celosa","src/Reproductor/musica/Duki/DUKI - Celosa .wav","src/Reproductor/img/Duko You Know.png"),
+                new Song("Chico Estrella","src/Reproductor/musica/Duki/DUKI - Chico Estrella .wav","src/Reproductor/img/Duko You Know.png"),
+                new Song("GiGi","src/Reproductor/musica/Duki/DUKI - GiGi .wav","src/Reproductor/img/Duko You Know.png"),
+                new Song("GIVENCHY","src/Reproductor/musica/Duki/DUKI - GIVENCHY .wav","src/Reproductor/img/Duko You Know.png")
         ));
     }
 
@@ -117,7 +117,7 @@ public class ArtistaManager {
                 default:
                     System.out.println("Opción no válida.");
             }
-            scanner.close();
         }
+        scanner.close();
     }
 }

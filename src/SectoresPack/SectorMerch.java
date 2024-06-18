@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 
-public class SectorMerch extends GestorProductos implements Gestorable<Merch> {
+/*public class SectorMerch extends GestorProductos implements Gestorable<Merch> {
     private TreeMap<Integer, Merch> arbol;
 
     public TreeMap<Integer, Merch> getArbol() {
@@ -21,7 +21,7 @@ public class SectorMerch extends GestorProductos implements Gestorable<Merch> {
         this.arbol = arbol;
     }
 
-    public SectorMerch(int capacidad, TreeMap<Integer, Merch> arbol) {
+    /*public SectorMerch(int capacidad, TreeMap<Integer, Merch> arbol) {
         super(capacidad);
         this.arbol = arbol;
     }
@@ -112,7 +112,7 @@ arbol.remove(eliminado.getCodigo());
                     }
                 }
             }
-        }
+        }*/
 
 
 
