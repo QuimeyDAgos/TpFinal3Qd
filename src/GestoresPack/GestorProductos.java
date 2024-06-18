@@ -9,17 +9,40 @@ import ProductosPack.Productos;
 
 import java.util.*;
 
-public abstract class GestorProductos <T extends Productos> {
-    private HashSet<T> ListadoProductos;
-    private int capacidad;
+public class GestorProductos  extends Productos {
+    private TreeSet<Productos> ListadoProductos;
 
-    public GestorProductos(HashSet<T> listadoProductos) {
+
+    public GestorProductos(TreeSet<Productos> listadoProductos) {
         ListadoProductos = listadoProductos;
     }
 
+    public GestorProductos() {
+    }
 
-    public void agregarProducto(Scanner scanner) {
+    public void cargarPredeterminados(){
+        ListadoProductos.add(new Comida("Pizza", 10.5, 20, true, 1, "Comida", "Italiana"));
+        ListadoProductos.add(new Comida("Hamburguesa", 8.0, 15, true, 2, "Comida", "Americana"));
+        ListadoProductos.add(new Comida("Sushi", 12.0, 10, true, 3, "Comida", "Japonesa"));
+        ListadoProductos.add(new Comida("Ensalada", 5.0, 30, true, 4, "Comida", "Vegetariana"));
+        ListadoProductos.add(new Comida("Hot Dog", 4.5, 40, true, 5, "Comida", "Americana"));
+        ListadoProductos.add(new Comida("Sandwich", 5.5, 25, true, 6, "Comida", "Variada"));
+        ListadoProductos.add(new Comida("Empanada", 3.0, 35, true, 7, "Comida", "Latina"));
+        ListadoProductos.add(new Merch("Camiseta", 15.0, 50, true, 8, "Merch", "M", "Rojo"));
+        ListadoProductos.add(new Merch("Gorra", 12.0, 30, true, 9, "Merch", "L", "Azul"));
+        ListadoProductos.add(new Merch("Taza", 8.0, 40, true, 10, "Merch", "Única", "Blanco"));
+        ListadoProductos.add(new Merch("Llaveros", 5.0, 60, true, 11, "Merch", "Única", "Negro"));
+        ListadoProductos.add(new Merch("Póster", 10.0, 20, true, 12, "Merch", "Única", "Multicolor"));
+        ListadoProductos.add(new Merch("Sudadera", 25.0, 25, true, 13, "Merch", "L", "Gris"));
+        ListadoProductos.add(new Merch("Bolígrafo", 2.0, 100, true, 14, "Merch", "Única", "Azul"));
+        guardarProductos();
+    }
+
+    public void agregarProducto() {
+        Scanner scanner= new Scanner(System.in);
         try {
+            Jackson<Productos> jackson= new Jackson<>();
+            ListadoProductos= jackson.cargarTreeSet("productos.json");
             System.out.println("Ingrese el tipo de Producto (Comida/Merch):");
             String tipoProducto = scanner.nextLine().trim();
             System.out.println("Ingrese el Nombre del Producto:");
@@ -32,7 +55,7 @@ public abstract class GestorProductos <T extends Productos> {
             int id = scanner.nextInt();
             scanner.nextLine(); // Consumir la nueva línea
 
-            for (T aux : ListadoProductos) {
+            for (Productos aux : ListadoProductos) {
                 if (aux.getId() == id) {
                     throw new Exception("Ya existe un Producto con ese ID.");
                 }
@@ -54,18 +77,20 @@ public abstract class GestorProductos <T extends Productos> {
                 throw new Exception("Tipo de producto no reconocido. Debe ser 'Comida' o 'Merch'.");
             }
 
-            ListadoProductos.add((T) nuevo);
+            ListadoProductos.add(nuevo);
             System.out.println("Producto agregado con éxito.");
-
             // Guardar la lista de productos actualizada en el archivo JSON
             guardarProductos();
+            scanner.close();
         } catch (Exception e) {
             System.out.println("Error al agregar la entrada: " + e.getMessage());
         }
     }
-    public T buscarProducto(int id){
-        T retorno = null;
-        for (T aux : ListadoProductos) {
+    public Productos buscarProducto(int id){
+        Jackson<Productos> jackson= new Jackson<>();
+        ListadoProductos= jackson.cargarTreeSet("productos.json");
+        Productos retorno = null;
+        for (Productos aux : ListadoProductos) {
             if (id==aux.getId()) {
                 retorno = aux;
             }
@@ -81,14 +106,16 @@ public abstract class GestorProductos <T extends Productos> {
     }
 
     public void mostrarSectores() {
+        Jackson<Productos> jackson= new Jackson<>();
+        ListadoProductos= jackson.cargarTreeSet("productos.json");
         System.out.println("Comida disponibles");
-        for (T s : ListadoProductos) {
+        for (Productos s : ListadoProductos) {
             if(s instanceof Comida){
             System.out.println(s);
         }}
 
         System.out.println(" Merchandising disponibles");
-        for (T s : ListadoProductos) {
+        for (Productos s : ListadoProductos) {
             if(s instanceof Merch){
             System.out.println(s);
         }}
@@ -98,7 +125,7 @@ public abstract class GestorProductos <T extends Productos> {
     public void modificarProducto(int id) {
         Scanner scanner=new Scanner(System.in);
         try {
-            T producto = buscarProducto(id);
+            Productos producto = buscarProducto(id);
             if (producto != null) {
                 System.out.println("Ingrese el nuevo Nombre del Producto:");
                 String nombreNuevo = scanner.nextLine();
@@ -125,7 +152,7 @@ public abstract class GestorProductos <T extends Productos> {
     }
 
     public void eliminarProducto(int id) {
-        T eliminado = buscarProducto(id);
+        Productos eliminado = buscarProducto(id);
         if (eliminado != null) {
             ListadoProductos.remove(eliminado);
         }
@@ -133,17 +160,71 @@ public abstract class GestorProductos <T extends Productos> {
     }
 
     public void mostrarProductos() {
-        for (T p : ListadoProductos) {
+        for (Productos p : ListadoProductos) {
             System.out.println(p);
         }
     }
 
+    public void menuGestionarProductos() {
+        System.out.println("|-----Menu Gestor Productos---|");
+        System.out.println("| [1] Agregar Producto        |");
+        System.out.println("| [2] Modificar Producto      |");
+        System.out.println("| [3] Eliminar Producto       |");
+        System.out.println("| [4] Salir                   |");
+        System.out.println("|-----------------------------|");
 
 
+
+    }
+
+    public void gestionarProductos() {
+        Scanner scanner = new Scanner(System.in);
+        boolean salir = false;
+        GestorProductos gestorProductos = new GestorProductos();
+
+        while (!salir) {
+
+            menuGestionarProductos();
+            System.out.print(">>");
+            int opcion = scanner.nextInt();
+            scanner.nextLine();
+            switch (opcion) {
+                case 1:
+                    gestorProductos.agregarProducto();
+
+                    break;
+                case 2:
+
+                    System.out.println("Escriba el id del producto a Modificar");
+                    int id= scanner.nextInt();
+                    scanner.nextLine();
+                   gestorProductos.modificarProducto(id);
+
+
+                    break;
+                case 3:
+                    System.out.println("Escriba el id del producto a Eliminar");
+                    int id2= scanner.nextInt();
+                    scanner.nextLine();
+                   gestorProductos.eliminarProducto(id2);
+                    break;
+                case 4:
+                    salir = true;
+                    System.out.println("Volviendo...");
+                case 5:
+                    cargarPredeterminados();
+                    break;
+                default:
+                    System.out.println("Valor invalido, intentelo denuevo");
+                    break;
+
+            }
+        }
+    }
 
     public void guardarProductos() {
-        Jackson<T> jackson = new Jackson<>();
-        jackson.guardarHashSet("productos.json", ListadoProductos);
+        Jackson<Productos> jackson = new Jackson<>();
+        jackson.guardarTreeSet("productos.json", ListadoProductos);
     }
 
 

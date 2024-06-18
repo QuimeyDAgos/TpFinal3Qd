@@ -24,7 +24,6 @@ public class MenuAdmin {
             {
                 case 1:
                     MenuGestor gesti =new MenuGestor();
-                    gesti.menuGestor();
                     break;
                 case 2:
                     MenuVenta venta =new MenuVenta();

@@ -2,12 +2,13 @@ package GestoresPack;
 
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 import PersonasPack.*;
+import ProductosPack.Productos;
 
 public class MenuGestor {
-public void menuGestor() {
-    
+    public static void main(String[] args) {
     boolean salir =false;
     Scanner in = new Scanner(System.in);
     System.out.println("Gestion de todo xd");
@@ -26,8 +27,9 @@ public void menuGestor() {
 
                  break;
              case 2:
-                 //Aca va el menu de gestor de productos
-
+                 TreeSet<Productos> listaProductos=new TreeSet<>();
+                 GestorProductos gestorProductos= new GestorProductos(listaProductos);
+                 gestorProductos.gestionarProductos();
                  break;
              case 3:
                  //gestionar conciertos
@@ -41,11 +43,14 @@ public void menuGestor() {
                  System.out.println("Opcion no valida");
                  break;
          }
+
+        in.close();
      }
 
 
 
-in.close();
-}
 
 }
+}
+
+
