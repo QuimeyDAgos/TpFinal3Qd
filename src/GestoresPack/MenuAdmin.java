@@ -5,7 +5,7 @@ import Reproductor.ArtistaManager;
 import java.util.Scanner;
 
 public class MenuAdmin {
-    public static void main(String[] args) {
+    public void menuAdmin() {
 
         Scanner scanner = new Scanner(System.in);
         boolean salir = false;
@@ -31,9 +31,27 @@ public class MenuAdmin {
                     venta.cajeroAdmin();
                     break;
                 case 3:
+                    System.out.println("-----------Proximos Artistas-------------");
+                    System.out.println("1. Duki");
+                    System.out.println("2. Dua Lipa");
+                    System.out.println("3. Nathy Peluso");
+                    System.out.println("4.Tini");
+                    System.out.println("5.La Vela Puerca");
+                    scanner.nextLine();
+                    System.out.println("Ingese el artista que desee");
+                    int opcionRep =scanner.nextInt();
+                    String nomArt = switch (opcionRep) {
+                        case 1 -> "Duki";
+                        case 2 -> "Dua Lipa";
+                        case 3 -> "Nathy Peluso";
+                        case 4 -> "TINI";
+                        case 5 -> "Vela Puerca";
+                        default -> "Duki";
+                    };
+
                     ArtistaManager artistaManager=new ArtistaManager();
                     System.out.println(">>");/// Habria que escanear el artista o ingresarlo segun evento
-                    artistaManager.runReproductor("Duki");
+                    artistaManager.runReproductor(nomArt);
                     break;
                 case 4 :
                     salir = true;
