@@ -7,16 +7,16 @@ import java.util.*;
 
 public class SistemaPersona<T> extends Jackson<T> {
 
-    private HashSet<Admin> listaAdmin=new HashSet<>();
-    private HashSet<Artista> artistas=new HashSet<>();
-    private HashSet<Cliente> clientes=new HashSet<>();
+    private HashSet<Admin> listaAdmin = new HashSet<>();
+    private HashSet<Artista> artistas = new HashSet<>();
+    private HashSet<Cliente> clientes = new HashSet<>();
     private HashSet<Persona> general = new HashSet<>();
 
     public SistemaPersona(HashSet<Admin> listaAdmin, HashSet<Artista> artistas, HashSet<Cliente> clientes) {
         this.listaAdmin = listaAdmin;
         this.artistas = artistas;
         this.clientes = clientes;
-        
+
     }
 
     public SistemaPersona() {
@@ -42,6 +42,7 @@ public class SistemaPersona<T> extends Jackson<T> {
         }
 
     }
+
     //mostrar Listas
     public void mostrarListaArtista() {
 
@@ -65,14 +66,15 @@ public class SistemaPersona<T> extends Jackson<T> {
 
     public void mostrarListaClientes() {
 
-        for (Cliente cliente: clientes) {
+        for (Cliente cliente : clientes) {
 
             System.out.println(cliente);
-            
+
 
         }
 
     }
+
     public void menuGestionarPersonas() {
         System.out.println("|------Menu Gestor Personas---|");
         System.out.println("| [1] Agregar Persona         |");
@@ -96,7 +98,7 @@ public class SistemaPersona<T> extends Jackson<T> {
 
     public void gestionarPersonas(String nombreArchi, Scanner scanner) {
         boolean salir = false;
-        GestoraPers gestoraPers =new GestoraPers();
+        GestoraPers gestoraPers = new GestoraPers();
 
         while (!salir) {
             System.out.println("a");
@@ -105,21 +107,21 @@ public class SistemaPersona<T> extends Jackson<T> {
             int opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                        
-                        gestoraPers.GestAddPers(scanner);
+
+                    gestoraPers.GestAddPers(scanner);
 
                     break;
                 case 2:
-                  
-                     gestoraPers.modificarPersona(nombreArchi);
+
+                    gestoraPers.modificarPersona(nombreArchi);
 
 
                     break;
                 case 3:
-                    gestionarEliminacionPersona(nombreArchi,scanner); // meter en gestora personas y llamar gestoraPers.gestionarEliminacion xdd
+                    gestionarEliminacionPersona(nombreArchi, scanner); // meter en gestora personas y llamar gestoraPers.gestionarEliminacion xdd
                     break;
-                case 4 :
-                    salir=true;
+                case 4:
+                    salir = true;
                     System.out.println("Volviendo...");
 
                 default:
@@ -193,6 +195,7 @@ public class SistemaPersona<T> extends Jackson<T> {
                 break;
         }
     }
+
     public Cliente buscarClientePorDni(int dni) {
         for (Cliente cliente : clientes) {
             if (cliente.getDni() == dni) {
@@ -202,4 +205,34 @@ public class SistemaPersona<T> extends Jackson<T> {
         return null; // Si no se encuentra el cliente
     }
 
+    public T buscar(HashSet<T> lista, int id) {
+
+        T persona = null;
+        for (T dato : lista) {
+            if (dato instanceof Cliente aux) {
+                if (aux.getDni() == id) {
+                    persona = dato;
+                }
+            } else if (dato instanceof Admin aux) {
+                if (aux.getDni() == id) {
+                    persona = dato;
+                }
+            } else {
+                Artista aux = (Artista) dato;
+                if (aux.getDni() == id) {
+                    persona = dato;
+                }
+            }
+        }
+        try {
+            if (persona != null) {
+                System.out.println("Persona Encontrada");
+            } else {
+                throw new RuntimeException("Persona no encontrda");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+      return persona;
+    }
 }

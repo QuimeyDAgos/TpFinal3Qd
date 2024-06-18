@@ -3,7 +3,9 @@ package ProductosPack;
 import Excepciones.ProductoNoDisponibleExepcion;
 import Interfaces.Vendible;
 
-public class Comida extends Productos implements Vendible {
+import java.io.Serializable;
+
+public class Comida extends Productos implements Vendible, Serializable {
     private String variedad;
 
     public String getTipo() {
@@ -17,6 +19,9 @@ public class Comida extends Productos implements Vendible {
     public Comida(String nombre, double precio, int stock, boolean disponibilad, int id, String tipo, String variedad) {
         super(nombre, precio, stock, disponibilad, id, tipo);
         this.variedad = variedad;
+    }
+
+    public Comida() {
     }
 
     @Override
@@ -49,8 +54,14 @@ public class Comida extends Productos implements Vendible {
 
     @Override
     public String toString() {
-        return "ProductosPack.Comida{" +
-                "tipo='" + tipo + '\'' +
+        return "Comida{" +
+                "variedad='" + variedad + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", stock=" + stock +
+                ", disponibilad=" + disponibilad +
+                ", id=" + id +
+                ", tipo='" + tipo + '\'' +
                 '}';
     }
 }
