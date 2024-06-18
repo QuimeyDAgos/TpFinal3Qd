@@ -142,7 +142,7 @@ public class GestorEntry {
             System.out.println("Error al vender la entrada: " + e.getMessage());
         }
     }
-    public static void main(String[] args) {
+   public void menuGestEntry() {
         Scanner scanner = new Scanner(System.in);
         GestorEntry gestorEntry = new GestorEntry();
 

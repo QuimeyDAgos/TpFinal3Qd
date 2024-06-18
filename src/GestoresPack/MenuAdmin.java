@@ -23,10 +23,12 @@ public class MenuAdmin {
             switch (opcion)
             {
                 case 1:
-                    //// Aca llamamos GestoresPack.MenuGestor
+                    MenuGestor gesti =new MenuGestor();
+                    gesti.menuGestor();
                     break;
                 case 2:
-                    ///Menu Venta
+                    MenuVenta venta =new MenuVenta();
+                    venta.cajeroAdmin();
                     break;
                 case 3:
                     ArtistaManager artistaManager=new ArtistaManager();

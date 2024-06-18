@@ -6,7 +6,7 @@ import java.util.Scanner;
 import PersonasPack.*;
 
 public class MenuGestor {
-public static void main(String[] args) {
+public void menuGestor() {
     
     boolean salir =false;
     Scanner in = new Scanner(System.in);
@@ -38,6 +38,7 @@ public static void main(String[] args) {
                  System.out.println("Volviendo...");
                  break;
              default:
+                 System.out.println("Opcion no valida");
                  break;
          }
      }
