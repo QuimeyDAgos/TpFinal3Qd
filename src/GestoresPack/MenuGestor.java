@@ -25,15 +25,8 @@ public static void main(String[] args) {
                  sistemaUno.gestionarPersonas("Personas.json",in);
 
                  break;
+
              case 2:
-                 //Aca va el menu de gestor de productos
-
-                 break;
-             case 3:
-                 //gestionar conciertos
-
-                 break;
-             case 4 :
                  salir = true;
                  System.out.println("Volviendo...");
                  break;

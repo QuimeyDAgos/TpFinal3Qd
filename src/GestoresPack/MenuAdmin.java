@@ -24,7 +24,7 @@ public class MenuAdmin {
             {
                 case 1:
                     MenuGestor gesti =new MenuGestor();
-                    gesti.menuGestor();
+                   // gesti.menuGestor();
                     break;
                 case 2:
                     MenuVenta venta =new MenuVenta();
@@ -50,7 +50,7 @@ public class MenuAdmin {
                     };
 
                     ArtistaManager artistaManager=new ArtistaManager();
-                    System.out.println(">>");/// Habria que escanear el artista o ingresarlo segun evento
+                    System.out.println(">>");
                     artistaManager.runReproductor(nomArt);
                     break;
                 case 4 :
