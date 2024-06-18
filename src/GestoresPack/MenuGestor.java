@@ -8,7 +8,7 @@ import PersonasPack.*;
 import ProductosPack.Productos;
 
 public class MenuGestor {
-    public static void main(String[] args) {
+    public void menu () {
     boolean salir =false;
     Scanner in = new Scanner(System.in);
     System.out.println("Gestion de todo xd");
@@ -18,13 +18,11 @@ public class MenuGestor {
      {
          switch (opcion) {
              case 1:
-
                  HashSet<Admin> listaAdmin = new HashSet<>();
                  HashSet<Artista> listaArtistas = new HashSet<>();
                  HashSet<Cliente> listaClientes = new HashSet<>();
                  SistemaPersona<Persona> sistemaUno = new SistemaPersona<Persona>(listaAdmin, listaArtistas, listaClientes);
                  sistemaUno.gestionarPersonas("Personas.json",in);
-
                  break;
              case 2:
                  TreeSet<Productos> listaProductos=new TreeSet<>();

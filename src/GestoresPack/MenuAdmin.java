@@ -5,9 +5,8 @@ import Reproductor.ArtistaManager;
 import java.util.Scanner;
 
 public class MenuAdmin {
-    public static void main(String[] args) {
+    public void menu(Scanner scanner) {
 
-        Scanner scanner = new Scanner(System.in);
         boolean salir = false;
 
         while (!salir) {
@@ -24,15 +23,43 @@ public class MenuAdmin {
             {
                 case 1:
                     MenuGestor gesti =new MenuGestor();
+                    gesti.menu();
                     break;
                 case 2:
-                    MenuVenta venta =new MenuVenta();
+                    MenuVenta venta = new MenuVenta();
                     venta.cajeroAdmin();
                     break;
                 case 3:
                     ArtistaManager artistaManager=new ArtistaManager();
-                    System.out.println(">>");/// Habria que escanear el artista o ingresarlo segun evento
-                    artistaManager.runReproductor("Duki");
+                    System.out.println("\n--- ProximosArtistas---");
+                    System.out.println("1. Vela Puerca");
+                    System.out.println("2. Nathy Peluso");
+                    System.out.println("3. DuaLipa");
+                    System.out.println("4. Duki");
+                    System.out.println("5. Tini0");
+                    System.out.println(">>");
+                    int opRep=scanner.nextInt();
+                    String nomArt="Duki";
+                    switch (opRep)
+                    {
+                        case 1:
+                            nomArt="Vela Puerca";
+                            break;
+                        case 2:
+                            nomArt="Nathy Peluso";
+                            break;
+                        case 3:
+                            nomArt="Dua Lipa";
+                            break;
+                        case 4:
+                            nomArt="Duki";
+                            break;
+                        case 5:
+                            nomArt="TINI";
+                            break;
+                    }
+                    artistaManager.runReproductor(nomArt);
+                    scanner.close();
                     break;
                 case 4 :
                     salir = true;

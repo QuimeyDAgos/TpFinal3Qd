@@ -56,8 +56,8 @@ public class Register {
         // Verificar las credenciales usando el método login de Admin
         if (admin.login(nombreUsuario, contrasenia)) {
             System.out.println("Inicio de sesión exitoso.");
-            MenuAdmin menuAdmin=new MenuAdmin();
-            menuAdmin.menuAdmin();
+            GestorPrincipal menuGestorPrincipal=new GestorPrincipal();
+            menuGestorPrincipal.setGestiona();
             // Aquí podrías agregar más opciones para el administrador después de iniciar sesión
         } else {
             System.out.println("Credenciales incorrectas. Intente nuevamente.");

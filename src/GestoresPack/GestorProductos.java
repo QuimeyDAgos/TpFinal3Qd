@@ -1,26 +1,30 @@
 package GestoresPack;
 
-
 import PersonasPack.Jackson;
 import ProductosPack.Comida;
 import ProductosPack.Merch;
 import ProductosPack.Productos;
 
-
+import java.io.File;
 import java.util.*;
 
-public class GestorProductos  extends Productos {
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class GestorProductos extends Productos {
     private TreeSet<Productos> ListadoProductos;
-
-
-    public GestorProductos(TreeSet<Productos> listadoProductos) {
-        ListadoProductos = listadoProductos;
-    }
+    private LinkedList<Productos> historialVentas;
 
     public GestorProductos() {
+        this.ListadoProductos = new TreeSet<>();
+        this.historialVentas = new LinkedList<>();
     }
 
-    public void cargarPredeterminados(){
+    public GestorProductos(TreeSet<Productos> productos) {
+        this.ListadoProductos = productos;
+        this.historialVentas = new LinkedList<>();
+    }
+
+    public void cargarPredeterminados() {
         ListadoProductos.add(new Comida("Pizza", 10.5, 20, true, 1, "Comida", "Italiana"));
         ListadoProductos.add(new Comida("Hamburguesa", 8.0, 15, true, 2, "Comida", "Americana"));
         ListadoProductos.add(new Comida("Sushi", 12.0, 10, true, 3, "Comida", "Japonesa"));
@@ -39,10 +43,10 @@ public class GestorProductos  extends Productos {
     }
 
     public void agregarProducto() {
-        Scanner scanner= new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         try {
-            Jackson<Productos> jackson= new Jackson<>();
-            ListadoProductos= jackson.cargarTreeSet("productos.json");
+            Jackson<Productos> jackson = new Jackson<>();
+            ListadoProductos = jackson.cargarTreeSet("productos.json");
             System.out.println("Ingrese el tipo de Producto (Comida/Merch):");
             String tipoProducto = scanner.nextLine().trim();
             System.out.println("Ingrese el Nombre del Producto:");
@@ -66,7 +70,7 @@ public class GestorProductos  extends Productos {
             if (tipoProducto.equalsIgnoreCase("Comida")) {
                 System.out.println("Ingrese Variedad de Comida:");
                 String variedad = scanner.nextLine();
-                nuevo = new Comida(nombreNuevo, precio, stock, true, id, variedad,tipoProducto);
+                nuevo = new Comida(nombreNuevo, precio, stock, true, id, variedad, tipoProducto);
             } else if (tipoProducto.equalsIgnoreCase("Merch")) {
                 System.out.println("Ingrese el Talle del Merch:");
                 String talle = scanner.nextLine();
@@ -86,12 +90,13 @@ public class GestorProductos  extends Productos {
             System.out.println("Error al agregar la entrada: " + e.getMessage());
         }
     }
-    public Productos buscarProducto(int id){
-        Jackson<Productos> jackson= new Jackson<>();
-        ListadoProductos= jackson.cargarTreeSet("productos.json");
+
+    public Productos buscarProducto(int id) {
+        Jackson<Productos> jackson = new Jackson<>();
+        ListadoProductos = jackson.cargarTreeSet("productos.json");
         Productos retorno = null;
         for (Productos aux : ListadoProductos) {
-            if (id==aux.getId()) {
+            if (id == aux.getId()) {
                 retorno = aux;
             }
         }
@@ -106,24 +111,26 @@ public class GestorProductos  extends Productos {
     }
 
     public void mostrarSectores() {
-        Jackson<Productos> jackson= new Jackson<>();
-        ListadoProductos= jackson.cargarTreeSet("productos.json");
+        Jackson<Productos> jackson = new Jackson<>();
+        ListadoProductos = jackson.cargarTreeSet("productos.json");
         System.out.println("Comida disponibles");
         for (Productos s : ListadoProductos) {
-            if(s instanceof Comida){
-            System.out.println(s);
-        }}
+            if (s.getTipo().equalsIgnoreCase("Comida")) {
+                System.out.println(s);
+            }
+        }
+        
 
         System.out.println(" Merchandising disponibles");
         for (Productos s : ListadoProductos) {
-            if(s instanceof Merch){
-            System.out.println(s);
-        }}
+            if (s.getTipo().equalsIgnoreCase("Merch")){
+                System.out.println(s);
+            }
+        }
     }
 
-
     public void modificarProducto(int id) {
-        Scanner scanner=new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         try {
             Productos producto = buscarProducto(id);
             if (producto != null) {
@@ -159,22 +166,14 @@ public class GestorProductos  extends Productos {
         guardarProductos();
     }
 
-    public void mostrarProductos() {
-        for (Productos p : ListadoProductos) {
-            System.out.println(p);
-        }
-    }
-
     public void menuGestionarProductos() {
-        System.out.println("|-----Menu Gestor Productos---|");
+        System.out.println("|----Menu Gestor Productos----|");
         System.out.println("| [1] Agregar Producto        |");
         System.out.println("| [2] Modificar Producto      |");
         System.out.println("| [3] Eliminar Producto       |");
-        System.out.println("| [4] Salir                   |");
+        System.out.println("| [4] Vender Producto         |");
+        System.out.println("| [5] Salir                   |");
         System.out.println("|-----------------------------|");
-
-
-
     }
 
     public void gestionarProductos() {
@@ -191,27 +190,32 @@ public class GestorProductos  extends Productos {
             switch (opcion) {
                 case 1:
                     gestorProductos.agregarProducto();
-
                     break;
                 case 2:
 
                     System.out.println("Escriba el id del producto a Modificar");
-                    int id= scanner.nextInt();
+                    int id = scanner.nextInt();
                     scanner.nextLine();
-                   gestorProductos.modificarProducto(id);
-
+                    gestorProductos.modificarProducto(id);
 
                     break;
                 case 3:
                     System.out.println("Escriba el id del producto a Eliminar");
-                    int id2= scanner.nextInt();
+                    int id2 = scanner.nextInt();
                     scanner.nextLine();
-                   gestorProductos.eliminarProducto(id2);
+                    gestorProductos.eliminarProducto(id2);
                     break;
                 case 4:
+                    mostrarSectores();
+                    Scanner sc = new Scanner(System.in);
+                    int id3 = sc.nextInt();
+                    gestorProductos.ventaProducto(id3);
+                    break;
+                case 5:
                     salir = true;
                     System.out.println("Volviendo...");
-                case 5:
+                    break;
+                case 6:
                     cargarPredeterminados();
                     break;
                 default:
@@ -227,8 +231,23 @@ public class GestorProductos  extends Productos {
         jackson.guardarTreeSet("productos.json", ListadoProductos);
     }
 
+    public void ventaProducto(int id) {
+        Productos p = buscarProducto(id);
 
+        if (p.getStock() > 0 && p.getDisponibilad()) {
+            {
+                p.setStock(p.getStock() - 1);
+                System.out.println("Se realizo la venta con exito");
+                if (p.getStock() == 0) {
+                    p.setDisponibilad(false);
+                }
+                historialVentas.add(p);
+            }
+        }
 
+        guardarProductos();
+
+    }
 
     @Override
     public String toString() {

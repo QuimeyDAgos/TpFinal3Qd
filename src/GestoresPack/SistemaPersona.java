@@ -205,6 +205,7 @@ public class SistemaPersona<T> extends Jackson<T> {
         return null; // Si no se encuentra el cliente
     }
 
+    /* 
     public T buscar(HashSet<T> lista, int id) {
 
         T persona = null;
@@ -235,4 +236,5 @@ public class SistemaPersona<T> extends Jackson<T> {
         }
       return persona;
     }
+      */
 }

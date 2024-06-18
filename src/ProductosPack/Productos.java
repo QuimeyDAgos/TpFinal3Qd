@@ -55,6 +55,16 @@ public class Productos implements Comparable<Productos>{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    public boolean getDisponibilad() {
+        return disponibilad;
+    }
+
+    public void setDisponibilad(boolean disponibilad) {
+        this.disponibilad = disponibilad;
+    }
+
+
+    
 
     public Productos(String nombre, double precio, int stock, boolean disponibilad, int id, String tipo) {
         this.nombre = nombre;
@@ -93,3 +103,5 @@ public class Productos implements Comparable<Productos>{
         return Integer.compare(this.getId(), other.getId());
     }
 }
+
+   

@@ -15,6 +15,8 @@ public class Entradas implements Vendible {
         this.disponibilad = true;
         this.id = id;
     }
+    
+    public Entradas(){}
 
     private double calcularPrecioBase() {
         return 10000; // Precio base de la entrada

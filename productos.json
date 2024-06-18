@@ -2,84 +2,98 @@
   "nombre" : "Pizza",
   "precio" : 10.5,
   "stock" : 20,
+  "disponibilad" : false,
   "id" : 1,
   "tipo" : "Comida"
 }, {
   "nombre" : "Hamburguesa",
   "precio" : 8.0,
   "stock" : 15,
+  "disponibilad" : false,
   "id" : 2,
   "tipo" : "Comida"
 }, {
   "nombre" : "Sushi",
   "precio" : 12.0,
   "stock" : 10,
+  "disponibilad" : false,
   "id" : 3,
   "tipo" : "Comida"
 }, {
   "nombre" : "Ensalada",
   "precio" : 5.0,
   "stock" : 30,
+  "disponibilad" : false,
   "id" : 4,
   "tipo" : "Comida"
 }, {
   "nombre" : "Hot Dog",
   "precio" : 4.5,
   "stock" : 40,
+  "disponibilad" : false,
   "id" : 5,
   "tipo" : "Comida"
 }, {
   "nombre" : "Sandwich",
   "precio" : 5.5,
   "stock" : 25,
+  "disponibilad" : false,
   "id" : 6,
   "tipo" : "Comida"
 }, {
   "nombre" : "Empanada",
   "precio" : 3.0,
   "stock" : 35,
+  "disponibilad" : false,
   "id" : 7,
   "tipo" : "Comida"
 }, {
   "nombre" : "Camiseta",
   "precio" : 15.0,
   "stock" : 50,
+  "disponibilad" : false,
   "id" : 8,
   "tipo" : "Merch"
 }, {
   "nombre" : "Gorra",
   "precio" : 12.0,
   "stock" : 30,
+  "disponibilad" : false,
   "id" : 9,
   "tipo" : "Merch"
 }, {
   "nombre" : "Taza",
   "precio" : 8.0,
   "stock" : 40,
+  "disponibilad" : false,
   "id" : 10,
   "tipo" : "Merch"
 }, {
   "nombre" : "Llaveros",
   "precio" : 5.0,
   "stock" : 60,
+  "disponibilad" : false,
   "id" : 11,
   "tipo" : "Merch"
 }, {
   "nombre" : "Póster",
   "precio" : 10.0,
   "stock" : 20,
+  "disponibilad" : false,
   "id" : 12,
   "tipo" : "Merch"
 }, {
   "nombre" : "Sudadera",
   "precio" : 25.0,
   "stock" : 25,
+  "disponibilad" : false,
   "id" : 13,
   "tipo" : "Merch"
 }, {
   "nombre" : "Bolígrafo",
   "precio" : 2.0,
   "stock" : 100,
+  "disponibilad" : false,
   "id" : 14,
   "tipo" : "Merch"
 } ]
