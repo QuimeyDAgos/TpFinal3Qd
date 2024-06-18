@@ -1,9 +1,9 @@
 import PersonasPack.Admin;
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Admin admin = new Admin("AdminInicial", "Apellido", 12345678, "admin1", "password123");
+        Admin adminInicial = new Admin("AdminInicial", "Apellido", 12345678, "admin1", "password123");
+        Admin admin= new Admin();
         Scanner scanner = new Scanner(System.in);
         boolean salir = false;
 
@@ -19,10 +19,10 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    admin.RegistrarAdmin();
+                    admin=adminInicial.RegistrarAdmin();
                     break;
                 case 2:
-                    iniciarSesion(admin, scanner);
+                    iniciarSesion(admin);
                     break;
                 case 3:
                     salir = true;
@@ -33,12 +33,13 @@ public class Main {
                     break;
             }
         }
-
         // Cerrar el Scanner al salir del programa
         scanner.close();
     }
 
-    private static void iniciarSesion(Admin admin, Scanner scanner) {
+    private static void iniciarSesion(Admin admin){
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("\n--- Inicio de Sesión ---");
 
         System.out.print("Ingrese Nombre de Usuario: ");
@@ -46,7 +47,7 @@ public class Main {
 
         System.out.print("Ingrese Contraseña: ");
         String contrasenia = scanner.nextLine();
-
+       
         // Verificar las credenciales usando el método login de Admin
         if (admin.login(nombreUsuario, contrasenia)) {
             System.out.println("Inicio de sesión exitoso.");
@@ -54,5 +55,6 @@ public class Main {
         } else {
             System.out.println("Credenciales incorrectas. Intente nuevamente.");
         }
+
     }
 }

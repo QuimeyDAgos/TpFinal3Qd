@@ -10,8 +10,8 @@ import ProductosPack.Productos;
 import java.util.*;
 
 public abstract class GestorProductos <T extends Productos> {
-
-    HashSet<T> ListadoProductos;
+    private HashSet<T> ListadoProductos;
+    private int capacidad;
 
     public GestorProductos(HashSet<T> listadoProductos) {
         ListadoProductos = listadoProductos;

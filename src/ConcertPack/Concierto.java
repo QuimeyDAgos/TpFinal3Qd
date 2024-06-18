@@ -4,6 +4,7 @@ package ConcertPack;
 import java.util.*;
 
 public class Concierto extends Entradas {
+
     private String nombreEvento;
     private Date fecha;
     private double duracion;
@@ -26,7 +27,6 @@ public class Concierto extends Entradas {
         this.entradas = new HashMap<>();
         this.duracionesActos = new HashMap<>();
     }
-
 
     public String getNombreEvento() {
         return nombreEvento;

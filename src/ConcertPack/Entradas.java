@@ -58,6 +58,7 @@ public class Entradas implements Vendible {
     public boolean isDisponibilad() {
         return this.disponibilad;
     }
+    
     @Override
     public void venta() {
         try {

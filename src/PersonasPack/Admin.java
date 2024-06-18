@@ -1,5 +1,6 @@
 package PersonasPack;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
@@ -11,32 +12,36 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Admin extends Persona implements Serializable {
-    private String User;
-    private String Contrasenia;
+    private String user;
+    private String contrasenia;
 
     public Admin(String nombre, String apellido, int dni, String user, String contrasenia) {
         super(nombre, apellido, dni);
-        User = user;
-        Contrasenia = contrasenia;
+        this.user = user;
+        this.contrasenia = contrasenia;
     }
+    
+    public Admin(){
+        super();
+    };
 
     public String getUser() {
-        return User;
+        return user;
     }
 
     public void setUser(String user) {
-        User = user;
+        this.user = user;
     }
 
     public String getContrasenia() {
-        return Contrasenia;
+        return contrasenia;
     }
 
     public void setContrasenia(String contrasenia) {
-        Contrasenia = contrasenia;
+        this.contrasenia = contrasenia;
     }
 
-    public static void RegistrarAdmin() {
+    public Admin RegistrarAdmin() {
         Scanner scanAdmin = new Scanner(System.in);
         System.out.println("Ingrese Nombre: ");
         String nombre = scanAdmin.nextLine();
@@ -46,7 +51,7 @@ public class Admin extends Persona implements Serializable {
 
         System.out.println("Ingrese DNI: ");
         int dni = scanAdmin.nextInt();
-        scanAdmin.nextLine(); // Consumir el salto de línea
+        scanAdmin.nextLine();// Consumir el salto de línea
 
         String nombreUsuario;
         boolean nombreValido = false;
@@ -76,7 +81,8 @@ public class Admin extends Persona implements Serializable {
             // Leer el archivo JSON si existe y no está vacío
             File file = new File("administradores.json");
             if (file.exists() && file.length() != 0) {
-                CollectionType listType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Admin.class);
+                CollectionType listType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class,
+                        Admin.class);
                 adminList = objectMapper.readValue(file, listType);
             }
 
@@ -86,6 +92,8 @@ public class Admin extends Persona implements Serializable {
         } catch (IOException e) {
             System.out.println("Error al registrar el administrador: " + e.getMessage());
         }
+        scanAdmin.close();
+        return nuevoAdmin;
     }
 
     public static boolean VerificarNombre(String nombreUsuario, File f) {
@@ -95,7 +103,8 @@ public class Admin extends Persona implements Serializable {
                 return false;
             }
 
-            CollectionType listType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Admin.class);
+            CollectionType listType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class,
+                    Admin.class);
             List<Admin> adminList = objectMapper.readValue(f, listType);
 
             for (Admin admin : adminList) {
@@ -110,26 +119,43 @@ public class Admin extends Persona implements Serializable {
     }
 
     public boolean validarContrasenia(String contrasenia) {
-        // La contraseña debe tener más de 8 caracteres y debe contener al menos una letra y un número
-        return contrasenia.length() > 8 && contrasenia.matches(".[a-zA-Z].") && contrasenia.matches(".\\d.");
+        // La contraseña debe tener más de 8 caracteres y debe contener al menos una
+        // letra y un número
+        return contrasenia.length() >= 8 && contrasenia.matches(".[a-zA-Z].") && contrasenia.matches(".\\d.");
     }
+
     public boolean login(String nombreUsuario, String contrasenia) {
-        // Verificar si el nombre de usuario y la contraseña coinciden con las del administrador actual
-        return this.User.equals(nombreUsuario) && this.Contrasenia.equals(contrasenia);
+        boolean retorno = false;
+        try {
+            File archi = new File("administradores.json");
+            ObjectMapper mapper = new ObjectMapper();
+            ArrayList<Admin> aux = mapper.readValue(archi, new TypeReference<ArrayList<Admin>>() {});
+            for (Admin a : aux) {
+                if (a.getUser().equals(nombreUsuario) && a.getContrasenia().equals(contrasenia)) {
+                    // Si las credenciales son correctas, actualiza los datos del administrador actual (this)
+                    this.setUser(a.getUser());
+                    this.setContrasenia(a.getContrasenia());
+                    this.setNombre(a.getNombre());
+                    this.setApellido(a.getApellido());
+                    this.setDni(a.getDni());
+                    retorno = true;
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo");
+        }
+        return retorno;
     }
 
     @Override
     public String toString() {
         return "Admin{" +
-                "User='" + User + '\'' +
-                ", Contrasenia='" + Contrasenia + '\'' +
+                "User='" + user + '\'' +
+                ", Contrasenia='" + contrasenia + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni=" + dni +
                 '}';
     }
 }
-
-
-
-
