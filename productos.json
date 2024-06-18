@@ -1,7 +1,7 @@
 [ {
   "nombre" : "Pizza",
   "precio" : 10.5,
-  "stock" : 20,
+  "stock" : 16,
   "disponibilad" : false,
   "id" : 1,
   "tipo" : "Comida"

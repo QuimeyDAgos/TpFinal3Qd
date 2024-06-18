@@ -1,10 +1,15 @@
 package PersonasPack;
+import ConcertPack.Entradas;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.HashMap;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Persona {
     protected String nombre;
     protected String apellido;
     protected int dni;
-   
+    protected HashMap<Integer, Entradas> historialEntr =new HashMap<>();
 
     public Persona(String nombre, String apellido, int dni) {
         this.nombre = nombre;
@@ -40,7 +45,13 @@ public class Persona {
         this.dni = dni;
     }
 
+    public HashMap<Integer, Entradas> getHistorialEntr() {
+        return historialEntr;
+    }
 
+    public void setHistorialEntr(HashMap<Integer, Entradas> historialEntr) {
+        this.historialEntr = historialEntr;
+    }
 
     @Override
     public String toString() {

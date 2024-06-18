@@ -9,6 +9,8 @@ public class Entradas implements Vendible {
     private TipoEntrada tipo;
     private int id;
 
+
+
     public Entradas(double precio, TipoEntrada tipo, int id) {
         this.precio = precio;
         this.tipo = tipo;

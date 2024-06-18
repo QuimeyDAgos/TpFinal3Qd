@@ -113,7 +113,6 @@ public class SistemaPersona<T> extends Jackson<T> {
                     break;
                 case 2:
 
-                    gestoraPers.modificarPersona(nombreArchi);
 
 
                     break;

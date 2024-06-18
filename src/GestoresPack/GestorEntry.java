@@ -4,7 +4,14 @@ import ConcertPack.TipoEntrada;
 import PersonasPack.Cliente;
 import PersonasPack.Jackson;
 import PersonasPack.Persona;
+import ProductosPack.Productos;
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,6 +20,7 @@ import java.util.Scanner;
 public class GestorEntry {
     private HashMap<Integer, Entradas> entradas;
     private SistemaPersona<Persona> sistema;
+    GestoraPers gestoraPers= new GestoraPers();
 
     public GestorEntry() {
         this.entradas = new HashMap<>();
@@ -110,6 +118,8 @@ public class GestorEntry {
 
     public void venderEntrada(int idEntrada, int dniCliente) {
         try {
+            Jackson<Entradas> jackson = new Jackson<>();
+            entradas = jackson.leerHashMap("Entradas.json");
             if (!entradas.containsKey(idEntrada)) {
                 System.out.println("No existe una entrada con ese ID.");
                 return;
@@ -121,11 +131,12 @@ public class GestorEntry {
                 return;
             }
 
-            Cliente cliente = sistema.buscarClientePorDni(dniCliente);
+            Persona cliente=  gestoraPers.buscarPersonaDNI(dniCliente);
             if (cliente == null) {
                 System.out.println("No existe un cliente con ese DNI.");
                 return;
             }
+
 
             cliente.getHistorialEntr().put(idEntrada, entrada); // Agregar entrada al historial del cliente
 
@@ -142,6 +153,24 @@ public class GestorEntry {
             System.out.println("Error al vender la entrada: " + e.getMessage());
         }
     }
+
+public double calcularIngresosEntradas(){
+    File archi= new File("Entradas.json");
+    ObjectMapper map = new ObjectMapper();
+    HashMap<Integer, Entradas> hashMap= new HashMap<>();
+    double ingreso=0.00;
+    try {
+       hashMap= map.readValue(archi, new TypeReference<HashMap<Integer, Entradas>>() {});
+       for (Entradas aux : hashMap.values()){
+           if(aux.isDisponibilad()==false){
+               ingreso+= aux.getPrecio();
+           }
+       }
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+    return ingreso;
+}
    public void menuGestEntry() {
         Scanner scanner = new Scanner(System.in);
         GestorEntry gestorEntry = new GestorEntry();

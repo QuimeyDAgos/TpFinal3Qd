@@ -166,6 +166,24 @@ public class Jackson <T> {
         }
 
     }
+    public HashSet<Persona> leerHashSetPersona(String nombreArchivo) {
+        File archivo = new File(nombreArchivo);
+        ObjectMapper mapper = new ObjectMapper();
+        HashSet<Persona> lista;
+
+        try {
+
+            lista = mapper.readValue(archivo, new TypeReference<HashSet<Persona>>() {
+            });
+            return lista;
+
+        } catch (IOException e) {
+
+            throw new RuntimeException(e);
+
+        }
+
+    }
 
     //Busqueda de diferentes personas
     public T buscarCliente(HashSet<T> lista, int id) {
@@ -311,5 +329,19 @@ public class Jackson <T> {
         }
     }
 
+
+    public HashMap<Integer, Entradas> leerHashMap(String nombreArchivo) {
+        File archivo = new File(nombreArchivo);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            // Define el tipo para la deserialización
+            TypeReference<HashMap<Integer, Entradas>> typeRef = new TypeReference<HashMap<Integer, Entradas>>() {};
+            return mapper.readValue(archivo, typeRef);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
 

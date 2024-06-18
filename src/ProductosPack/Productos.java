@@ -55,7 +55,8 @@ public class Productos implements Comparable<Productos>{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    public boolean getDisponibilad() {
+
+    public boolean isDisponibilad() {
         return disponibilad;
     }
 
@@ -77,10 +78,12 @@ public class Productos implements Comparable<Productos>{
 
     @Override
     public String toString() {
-        return "ProductosPack.Productos{" +
+        return "Productos{" +
                 "nombre='" + nombre + '\'' +
                 ", precio=" + precio +
                 ", stock=" + stock +
+                ", disponibilad=" + disponibilad +
+                ", id=" + id +
                 '}';
     }
 

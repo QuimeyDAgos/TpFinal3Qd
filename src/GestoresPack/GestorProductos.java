@@ -233,20 +233,28 @@ public class GestorProductos extends Productos {
 
     public void ventaProducto(int id) {
         Productos p = buscarProducto(id);
+        if (p != null && p.getStock() > 0 ) {
+            p.setStock(p.getStock() - 1);
+            System.out.println("Se realizó la venta con éxito");
 
-        if (p.getStock() > 0 && p.getDisponibilad()) {
-            {
-                p.setStock(p.getStock() - 1);
-                System.out.println("Se realizo la venta con exito");
-                if (p.getStock() == 0) {
-                    p.setDisponibilad(false);
-                }
-                historialVentas.add(p);
+            if (p.getStock() == 0) {
+                p.setDisponibilad(false);
             }
+            historialVentas.add(p);
+            guardarProductos();  // Guardar los productos después de actualizar la disponibilidad
+
+        } else {
+            System.out.println("No se pudo realizar la venta: Producto no encontrado o sin stock disponible.");
         }
 
-        guardarProductos();
-
+    }
+    public double Ingreso(){
+        double ingresoTotal=0.00;
+        for (Productos aux : historialVentas)
+        {
+            ingresoTotal+=aux.getPrecio();
+        }
+        return ingresoTotal;
     }
 
     @Override

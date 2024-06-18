@@ -15,21 +15,26 @@ public class MenuVenta {
             System.out.println("\n--- Menú de Venta ---");
             System.out.println("1. Entradas");
             System.out.println("2. Productos");
+            System.out.println("3. Calcular Ingresos Totales");
             System.out.println("3. Salir");
-
+            GestorEntry gestorEntry = new GestorEntry();
+            TreeSet<Productos> listaProductos = new TreeSet<>();
+            GestorProductos gestorProductos = new GestorProductos(listaProductos);
             int opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    GestorEntry gestorEntry = new GestorEntry();
+
                     gestorEntry.menuGestEntry();
                     break;
                 case 2:
                     ///// gestora Productos
-                    TreeSet<Productos> listaProductos = new TreeSet<>();
-                    GestorProductos gestorProductos = new GestorProductos(listaProductos);
                     gestorProductos.gestionarProductos();
                     break;
                 case 3:
+                    double ingreso= gestorProductos.Ingreso()+ gestorEntry.calcularIngresosEntradas();
+                    System.out.println(ingreso);
+                    break;
+                case 4:
                     salir = true;
                     System.out.println("Volviendo...");
                     break;
@@ -38,5 +43,7 @@ public class MenuVenta {
 
             }
         }
+        scanner.close();
     }
+
 }

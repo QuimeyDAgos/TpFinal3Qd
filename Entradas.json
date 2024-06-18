@@ -1,6 +1,6 @@
 {
   "1" : {
-    "disponibilad" : true,
+    "disponibilad" : false,
     "precio" : 10000.0,
     "tipo" : "GENERAL",
     "id" : 1

@@ -3,22 +3,25 @@ package GestoresPack;
 import AlbumPack.Album;
 import AlbumPack.Cancion;
 import PersonasPack.*;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Scanner;
+import ProductosPack.Productos;
+
+import java.util.*;
 
 
 public class GestoraPers {
+
+ private HashSet<Persona> listaPersonas;
+
     public GestoraPers() {
+        listaPersonas= new HashSet<>();
     }
 
-    public void GestAddPers(Scanner scanner){
+    public void GestAddPers(Scanner scanner) {
         boolean salir = false;
         Jackson<Persona> jack = new Jackson<>();
-        SistemaPersona<Persona> sis =new SistemaPersona<>();
+        SistemaPersona<Persona> sis = new SistemaPersona<>();
 
-        while (!salir)
-        {
+        while (!salir) {
             System.out.println("|------------Añadir-----------|");
             System.out.println("|--------Tipo de Persona------|");
             System.out.println("| [1] Admin                   |");
@@ -31,7 +34,7 @@ public class GestoraPers {
 
             switch (opcionDos) {
                 case 1:
-                   /// Gestor pers admin
+                    /// Gestor pers admin
                     break;
                 case 2:
 
@@ -84,8 +87,8 @@ public class GestoraPers {
                     if (!sis.getGeneral().contains(artista)) {
                         sis.getGeneral().add(artista);
                     }
-                    jack.guardarHashSet("Personas.json",sis.getGeneral());
-                    salir=true;
+                    jack.guardarHashSet("Personas.json", sis.getGeneral());
+                    salir = true;
                     break;
 
                 case 3:
@@ -104,10 +107,10 @@ public class GestoraPers {
                     scanner.nextLine();
                     System.out.println("DNI");
                     int dni = scanner.nextInt();
-                    Cliente aux =new Cliente(nom,ape,dni,mail,tel);
+                    Cliente aux = new Cliente(nom, ape, dni, mail, tel);
                     // Creariamos una persona de tipo Cliente y se guardaria
-                  jack.guardarUnoEnlista("Personas.json",aux);
-                   salir=true;
+                    jack.guardarUnoEnlista("Personas.json", aux);
+                    salir = true;
                     break;
                 case 4:
 
@@ -124,104 +127,32 @@ public class GestoraPers {
             }
         }
 
-        }
-
-
-    public void modificarPersona(String nombreArchi){
-        
-        Scanner in = new Scanner(System.in);
-        System.out.println("|---------Tipo Persona--------|");
-        System.out.println("| [1] Admin                   |");
-        System.out.println("| [2] Artista                 |");
-        System.out.println("| [3] Cliente                 |");
-        System.out.println("| [4] Salir                   |");
-        System.out.println("|-----------------------------|");
-        System.out.print(">>");
-        int opcion = in.nextInt();
-        SistemaPersona<Persona>sis = new SistemaPersona<>();
-        HashSet<Persona>listaAdmin =sis.leerHashSet(nombreArchi);
-        boolean salir = false;
-        while (!salir){
-            System.out.println("Escriba el dni de la persona a modificar");
-            System.out.println("-----------------------------------------");
-            System.out.print(">>");
-            int dni = in.nextInt();
-            switch (opcion) {
-                case 1:
-                   
-    
-                    Admin aux = (Admin) sis.buscarAdmin(listaAdmin, dni);
-                    atributoAmodificar(aux, dni);
-                    break;
-    
-                    case 2:
-                    Artista auxDos = (Artista) sis.buscarAdmin(listaAdmin, dni);
-                    atributoAmodificar(auxDos, dni);
-                    
-                    break;
-    
-                    case 3:       
-                    Cliente auxTres = (Cliente) sis.buscarAdmin(listaAdmin, dni);
-                    atributoAmodificar(auxTres, dni);
-
-                    break;
-                    case 4:
-                        salir = true;
-                        System.out.println("Volviendo...");
-                    break;
-            
-                default:
-                        System.out.println("[ERORR]");
-                    break;
-            }
-        }
-        sis.guardarHashSet(nombreArchi, listaAdmin);
-        in.close();
-
-
     }
-    public void atributoAmodificar (Persona aux, int dni){
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("|-----------Modificar---------|");
-        System.out.println("|-----------Atributo----------|");
-        System.out.println("| [1] Nombre                  |");
-        System.out.println("| [2] Apellido                |");
-        System.out.println("| [3] Salir                   |");
-        System.out.println("|-----------------------------|");
-        System.out.print(">>");
-        int opcion = in.nextInt();
-        boolean salir = false;
-            while (!salir){
-                switch (opcion) {
-                    case 1:
-                    String nuevoNombre = in.nextLine();
-                    aux.setNombre(nuevoNombre);
-                   
-         
-                        break;
-                        case 2:
-                        String nuevoApellido = in.nextLine();
-                        aux.setNombre(nuevoApellido);
-        
-                        //Cambiar apellido
-                        break;
-                        case 3:
-                        salir= true;
-                        System.out.println("Volviendo...");
-                        break;
-                
-                    default:
-                    System.out.println("[ERROR]");
-                        break;
+    public Persona buscarPersonaDNI(int dni) {
+        Jackson<Persona> jackson = new Jackson<>();
+        listaPersonas = jackson.leerHashSetPersona("Personas.json");
+        Persona retorno = null;
+        for (Persona aux : listaPersonas) {
+            {
+                if (dni == aux.getDni()) {
+                    retorno = aux;
                 }
-
             }
-        in.close();
-        
-
-
+        }
+        try {
+            if (retorno == null) {
+                throw new RuntimeException("Persona no Encontrado");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+        return retorno;
+    }
 
 }
 
-    }
+   
+
+
+

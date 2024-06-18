@@ -37,6 +37,9 @@ public class MenuGestor {
                  salir = true;
                  System.out.println("Volviendo...");
                  break;
+             case 5:
+                 GestoraPers personas= new GestoraPers();
+
              default:
                  System.out.println("Opcion no valida");
                  break;
