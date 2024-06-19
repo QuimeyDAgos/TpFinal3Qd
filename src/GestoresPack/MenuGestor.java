@@ -12,6 +12,12 @@ public class MenuGestor {
     boolean salir =false;
     Scanner in = new Scanner(System.in);
     System.out.println("Gestion de todo xd");
+        System.out.println("|------------Gestor-----------|");
+        System.out.println("| [1] Personas                |");
+        System.out.println("| [2] Productos               |");
+        System.out.println("| [3] Salir                   |");
+        System.out.println("|-----------------------------|");
+
     System.out.print(">>");
      int opcion = in.nextInt();
      while (!salir)
@@ -29,17 +35,10 @@ public class MenuGestor {
                  GestorProductos gestorProductos= new GestorProductos(listaProductos);
                  gestorProductos.gestionarProductos();
                  break;
-             case 3:
-                 //gestionar conciertos
-
-                 break;
-             case 4 :
+             case 3 :
                  salir = true;
                  System.out.println("Volviendo...");
                  break;
-             case 5:
-                 GestoraPers personas= new GestoraPers();
-
              default:
                  System.out.println("Opcion no valida");
                  break;

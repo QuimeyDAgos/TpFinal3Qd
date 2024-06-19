@@ -24,19 +24,16 @@ public class GestoraPers {
         while (!salir) {
             System.out.println("|------------Añadir-----------|");
             System.out.println("|--------Tipo de Persona------|");
-            System.out.println("| [1] Admin                   |");
             System.out.println("| [2] Artista                 |");
-            System.out.println("| [3] Cliente                 |");
-            System.out.println("| [4] Salir                   |");
+            System.out.println("| [2] Cliente                 |");
+            System.out.println("| [3] Salir                   |");
             System.out.println("|-----------------------------|");
             System.out.print(">>");
             int opcionDos = scanner.nextInt();
 
             switch (opcionDos) {
+
                 case 1:
-                    /// Gestor pers admin
-                    break;
-                case 2:
 
                     LinkedList<Cancion> lista_canciones2 = new LinkedList<>();
                     Album album2 = new Album("Future Nostalgia", 2021, lista_canciones2);
@@ -91,7 +88,7 @@ public class GestoraPers {
                     salir = true;
                     break;
 
-                case 3:
+                case 2:
                     scanner.nextLine();
                     System.out.println("Ingrese nombre");
                     String nom = scanner.nextLine();
@@ -112,7 +109,7 @@ public class GestoraPers {
                     jack.guardarUnoEnlista("Personas.json", aux);
                     salir = true;
                     break;
-                case 4:
+                case 3:
 
                     salir = true;
                     System.out.println("Volviendo...");

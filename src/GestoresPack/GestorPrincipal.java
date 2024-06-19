@@ -36,7 +36,7 @@ public class GestorPrincipal {
         System.out.println("3. Duki");
         System.out.println("4. Tini");
         System.out.println("5. Dua Lipa");
-
+        System.out.println("Ingrese el numero que desee: ");
         Scanner sc=new Scanner(System.in);
         int value=sc.nextInt();
         MenuAdmin menuAdmin=new MenuAdmin();

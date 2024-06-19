@@ -78,9 +78,7 @@ public class SistemaPersona<T> extends Jackson<T> {
     public void menuGestionarPersonas() {
         System.out.println("|------Menu Gestor Personas---|");
         System.out.println("| [1] Agregar Persona         |");
-        System.out.println("| [2] Modificar Persona       |");
-        System.out.println("| [3] Eliminar Persona        |");
-        System.out.println("| [4] Salir                   |");
+        System.out.println("| [2] Salir                   |");
         System.out.println("|-----------------------------|");
 
     }
@@ -101,7 +99,6 @@ public class SistemaPersona<T> extends Jackson<T> {
         GestoraPers gestoraPers = new GestoraPers();
 
         while (!salir) {
-            System.out.println("a");
             menuGestionarPersonas();
             System.out.print(">>");
             int opcion = scanner.nextInt();
@@ -112,14 +109,6 @@ public class SistemaPersona<T> extends Jackson<T> {
 
                     break;
                 case 2:
-
-
-
-                    break;
-                case 3:
-                    gestionarEliminacionPersona(nombreArchi, scanner); // meter en gestora personas y llamar gestoraPers.gestionarEliminacion xdd
-                    break;
-                case 4:
                     salir = true;
                     System.out.println("Volviendo...");
 

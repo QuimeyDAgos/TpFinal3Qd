@@ -208,6 +208,7 @@ public class GestorProductos extends Productos {
                 case 4:
                     mostrarSectores();
                     Scanner sc = new Scanner(System.in);
+                    System.out.println("Ingrese el id del producto que desea comprar :");
                     int id3 = sc.nextInt();
                     gestorProductos.ventaProducto(id3);
                     break;
